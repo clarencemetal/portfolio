@@ -1,0 +1,40 @@
+/* Configuration de la police Inter */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5; /* Couleur de fond légèrement grise */
+    color: #333;
+}
+/* Style pour les sections, avec des coins arrondis */
+section {
+    background-color: #ffffff;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem; /* Coins arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre */
+}
+/* Style pour les boutons */
+.btn {
+    padding-left: 1.5rem; /* px-6 */
+    padding-right: 1.5rem; /* px-6 */
+    padding-top: 0.75rem; /* py-3 */
+    padding-bottom: 0.75rem; /* py-3 */
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 600; /* font-semibold */
+    transition-property: all; /* transition */
+    transition-duration: 300ms; /* duration-300 */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+}
+.btn-primary {
+    background-color: #2563eb; /* bg-blue-600 */
+    color: #ffffff; /* text-white */
+}
+.btn-primary:hover {
+    background-color: #1d4ed8; /* hover:bg-blue-700 */
+}
+.btn-secondary {
+    background-color: #e5e7eb; /* bg-gray-200 */
+    color: #4b5563; /* text-gray-800 */
+}
+.btn-secondary:hover {
+    background-color: #d1d5db; /* hover:bg-gray-300 */
+}
