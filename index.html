@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio - Clarence Borne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Styles personnalisés pour les boutons, transitions et animations */
+        .btn {
+            @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-300;
+        }
+        .btn-primary {
+            @apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+        }
+        .btn-secondary {
+            @apply text-blue-700 bg-blue-100 hover:bg-blue-200 focus:ring-blue-500;
+        }
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-container {
+            transition: transform 0.3s ease;
+        }
+        html {
+            scroll-behavior: smooth; /* Active le défilement fluide pour les ancres */
+        }
+        section {
+            padding-top: 4rem; /* Ajoute un padding en haut de chaque section pour le défilement */
+            padding-bottom: 4rem; /* Ajoute un padding en bas de chaque section */
+        }
+        .loader {
+            border-top-color: #3498db;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+        }
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="font-inter antialiased text-gray-900 bg-gray-50">
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-6 shadow-lg fixed w-full z-10 top-0">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-4xl font-bold mb-4 md:mb-0">
+                <a href="#accueil" class="hover:opacity-80 transition-opacity">Clarence Borne</a>
+            </h1>
+            <nav aria-label="Navigation principale">
+                <ul class="flex flex-wrap justify-center gap-6 text-lg">
+                    <li><a href="#accueil" class="hover:text-blue-200 transition-colors">Accueil</a></li>
+                    <li><a href="#a-propos" class="hover:text-blue-200 transition-colors">À Propos</a></li>
+                    <li><a href="#formation" class="hover:text-blue-200 transition-colors">Formation</a></li>
+                    <li><a href="#projets" class="hover:text-blue-200 transition-colors">Projets</a></li>
+                    <li><a href="#competences" class="hover:text-blue-200 transition-colors">Compétences</a></li>
+                    <li><a href="#contact" class="hover:text-blue-200 transition-colors">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-24"> 
+        <section id="accueil" class="text-center">
+            <div class="flex flex-col items-center">
+                <img src="photo perso/!personnes_ETUDIANTS.jpg" alt="Photo de profil de Clarence Borne" class="rounded-full w-42 h-48 object-cover border-4 border-blue-400 shadow-lg mb-6">
+                <h2 class="text-5xl font-extrabold text-gray-800 mb-4">Bonjour, je suis Clarence Borne</h2>
+                <p class="text-xl text-gray-600 max-w-2xl">
+                    Actuellement étudiant en troisième année d'ingénierie mécanique à la Haute école d'ingénierie et d'architecture de Fribourg. Bienvenue sur mon portfolio.
+                </p>
+                
+            </div>
+        </section>
+
+        <!-- SECTION "À PROPOS" MODIFIÉE -->
+        <section id="a-propos">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">À Propos de Moi</h2>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <div class="text-gray-700 leading-relaxed space-y-4">
+                    <p>
+                        Mon parcours est un mélange de précision horlogère, d'ingénierie mécanique et de leadership. Tout a commencé par un <strong>apprentissage de dessinateur en construction microtechnique</strong> chez Simon & Membrez SA (aujourd'hui Blancpain), où j'ai développé une expertise en conception de boîtiers de montres sur CATIA V5, alliant design et contraintes de fabrication. En parallèle, j'ai obtenu une <strong>maturité professionnelle technique</strong>.
+                    </p>
+                    <p>
+                        Désireux d'élargir mes horizons, je suis parti pour un semestre à Berlin afin de perfectionner mon allemand, une expérience complétée par un <strong>stage pratique en usinage </strong>sur machines CNC. À mon retour, j'ai effectué mon service militaire, où j'ai gravi les échelons jusqu'au grade de <strong>Lieutenant</strong>. Commander une section de 30 soldats a été une expérience formatrice qui m'a doté de solides compétences en gestion d'équipe et en leadership, validées par une certification de l'Association Suisse des Cadres.
+                    </p>
+                    <p>
+                        Aujourd'hui, je suis <strong>étudiant en génie mécanique à la HEIA de Fribourg</strong> dans un cursus bilingue français-allemand. Je mets en pratique mes acquis à travers des projets stimulants : de la rétro-ingénierie d'un compresseur sur Siemens NX à la conception et fabrication d'un robot pour le concours Eurobot, un projet qui m'a immergé dans le monde de la programmation et de l'électronique. Je suis motivé à appliquer cette synergie de compétences techniques et managériales pour relever de futurs défis d'ingénierie.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="formation">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Formation & Certifications</h2>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div class="flex-shrink-0 bg-blue-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-semibold text-gray-900">Certificat Fédéral de Capacité (CFC)</h3>
+                        <p class="text-gray-600 font-medium">Dessinateur en construction microtechnique</p>
+                        <p class="text-gray-500 text-sm mt-1">Formation de base en conception et dessin technique, validée en 2021.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div class="flex-shrink-0 bg-green-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0v-5" /></svg>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-semibold text-gray-900">Maturité Professionnelle Technique</h3>
+                        <p class="text-gray-600 font-medium">Orientation: Technique, architecture et sciences de la vie</p>
+                        <p class="text-gray-500 text-sm mt-1">Titre ouvrant l'accès aux hautes écoles spécialisées (HES), obtenu en 2021.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div class="flex-shrink-0 bg-red-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.539 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.539-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-semibold text-gray-900">Formation d'Officier - Armée Suisse</h3>
+                        <p class="text-gray-600 font-medium">Promotion au grade de Lieutenant (2022)</p>
+                        <p class="text-gray-500 text-sm mt-1">Obtention du "Certificat de Conduite Niveau 1" de l'Association Suisse des Cadres (ASC).</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div class="flex-shrink-0 bg-purple-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M8 20h8M12 16v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-semibold text-gray-900">Certifications CATIA V5</h3>
+                        <p class="text-gray-600 font-medium">Formations spécialisées en CAO</p>
+                        <ul class="list-disc list-inside text-gray-500 text-sm mt-1">
+                            <li><strong>CATIA V5 - Basic:</strong> Formation complète (2019)</li>
+                            <li><strong>CATIA V5 - Surface Watch / Habillage:</strong> Formation avancée orientée horlogerie (2021)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div class="flex-shrink-0 bg-yellow-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <rect x="3" y="7" width="18" height="10" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M7 11h2M7 15h2M15 11h2M15 15h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-xl font-semibold text-gray-900">Permis de conduire C1E & D1E</h3>
+                        <p class="text-gray-600 font-medium">Permis professionnels</p>
+                        <p class="text-gray-500 text-sm mt-1">
+                            Titulaire des permis C1E (véhicules lourds avec remorque) et D1E (minibus avec remorque).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Mes Projets et Expériences</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <img src="Projet\montreblancpain.jpg" alt="Projet Horlogerie"
+                         class="rounded-md mb-4 object-cover w-full h-48 border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Conception de Composants Horlogers</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Conception 3D et réalisation de plans 2D pour des boîtiers de montre durant mon apprentissage.
+                    </p>
+                    <button onclick="openModal('horlogerie')" class="text-blue-600 hover:underline self-start mt-auto" aria-haspopup="dialog" aria-controls="projectModal">Voir les détails &rarr;</button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <img src="Projet\promessfertigung.jpg" alt="Stage Opérateur CNC"
+                         class="rounded-md mb-4 object-cover w-full h-48 border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Stage Opérateur Machines CNC</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Stage pratique sur la mise en marche de rainureuses et centres CNC dans un environnement de production à Berlin.
+                    </p>
+                    <button onclick="openModal('cnc')" class="text-blue-600 hover:underline self-start mt-auto" aria-haspopup="dialog" aria-controls="projectModal">Voir les détails &rarr;</button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <img src="Projet\gardeavous.JPG" alt="Expérience Militaire"
+                         class="rounded-md mb-4 object-cover w-full h-48 border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Expérience d'Officier - Armée Suisse</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Direction et instruction d'une section de 30 soldats en tant que Lieutenant, avec développement de compétences en leadership.
+                    </p>
+                    <button onclick="openModal('armee')" class="text-blue-600 hover:underline self-start mt-auto" aria-haspopup="dialog" aria-controls="projectModal">Voir les détails &rarr;</button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <img src="Projet/compresseur.png" alt="Vue éclatée du compresseur"
+                         class="rounded-md mb-4 object-contain w-full h-48 border border-gray-200 shadow-sm bg-white">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Projet HEIA : Rétro-ingénierie</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Analyse et rétro-ingénierie d'un compresseur à air, incluant la modélisation 3D et l'analyse fonctionnelle.
+                    </p>
+                    <button onclick="openModal('heia_se2')" class="text-blue-600 hover:underline self-start mt-auto" aria-haspopup="dialog" aria-controls="projectModal">Voir les détails &rarr;</button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <img src="Projet/GRU_Suisse.jpg" alt="Robot du projet Eurobot"
+                         class="rounded-md mb-4 object-contain w-full h-48 border border-gray-200 shadow-sm bg-white">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Projet HEIA : Robotique Eurobot</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Conception et fabrication d'un robot autonome pour la participation au concours de robotique Eurobot.
+                    </p>
+                    <button onclick="openModal('heia_se34')" class="text-blue-600 hover:underline self-start mt-auto" aria-haspopup="dialog" aria-controls="projectModal">Voir les détails &rarr;</button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <img src="Projet/lachat-metal.png" alt="Site web de Lachat Métal"
+                         class="rounded-md mb-4 object-cover w-full h-48 border border-gray-200 shadow-sm">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Création du site web de Lachat Métal</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">
+                        Réalisation et gestion du site web de l'entreprise Lachat Métal à Vicques.
+                    </p>
+                    <button onclick="openModal('lachat_metal')" class="text-blue-600 hover:underline self-start mt-auto" aria-haspopup="dialog" aria-controls="projectModal">Voir les détails &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION "COMPÉTENCES" MODIFIÉE -->
+        <section id="competences">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Mes Compétences</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Catégorie Conception & CAO -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 text-blue-600 rounded-full p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Conception & CAO</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-blue-500">&bull;</span>CATIA V5 (Basic & Surfacique)</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-blue-500">&bull;</span>Siemens NX</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-blue-500">&bull;</span>Conception Mécanique</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-blue-500">&bull;</span>Dessin Technique 2D/3D</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-blue-500">&bull;</span>Rétro-ingénierie</li>
+                    </ul>
+                </div>
+
+                
+
+                <!-- Catégorie Gestion & Leadership -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 text-red-600 rounded-full p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Gestion & Leadership</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-red-500">&bull;</span>Gestion de Projet</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-red-500">&bull;</span>Management d'équipe (30 pers.)</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-red-500">&bull;</span>Présentation et Communication d'informations</li>
+
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-red-500">&bull;</span>Planification et organisation </li>
+                        
+                    </ul>
+                </div>
+
+<!-- Catégorie Robotique & Informatique -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 text-green-600 rounded-full p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Robotique & Informatique</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-green-500">&bull;</span>Programmation (Python, html, css)</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-green-500">&bull;</span>Électronique de commande</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-green-500">&bull;</span>Suite O365, LaTeX</li>
+
+                    </ul>
+                </div>
+
+
+                <!-- Catégorie Fabrication & Qualité -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Fabrication & Qualité</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-indigo-500">&bull;</span>Usinage sur machines CNC</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-indigo-500">&bull;</span>Procédés de fabrication</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-indigo-500">&bull;</span>Contrôle qualité</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-indigo-500">&bull;</span>Montage et assemblage</li>
+                    </ul>
+                </div>
+
+                <!-- Catégorie Langues -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 text-yellow-600 rounded-full p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h-3.248c-1.105 0-2-.9-2-2v-3.362c0-1.105.895-2 2-2h3.248c1.105 0 2 .9 2 2v3.362c0 1.105-.895 2-2 2z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Langues</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-yellow-500">&bull;</span>Français (Langue maternelle)</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-yellow-500">&bull;</span>Allemand (B2 - Cursus bilingue)</li>
+                        <li class="flex items-center"><span class="font-semibold mr-2 text-yellow-500">&bull;</span>Anglais (B2)</li>
+                    </ul>
+                </div>
+
+              
+            </div>
+        </section>
+
+        <!-- SECTION ASSISTANT IA (INCHANGÉE) -->
+        <!--
+        <section id="assistant-ia">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Posez une question à l'IA</h2>
+            <div class="max-w-2xl mx-auto">
+                <form id="ai-form" class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <label for="ai-question" class="block text-gray-700 text-sm font-bold mb-2">Votre question sur mon profil :</label>
+                        <input type="text" id="ai-question" name="question" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Ex: Quelles sont ses compétences en CAO ?" required>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button type="submit" id="ai-submit-btn" class="btn btn-primary w-full flex items-center justify-center">
+                            <span id="ai-btn-text">Envoyer à l'IA</span>
+                            <div id="ai-loader" class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6 ml-3 hidden"></div>
+                        </button>
+                    </div>
+                </form>
+                <div id="ai-response-container" class="mt-6 p-4 bg-gray-100 rounded-lg hidden">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Réponse de l'assistant :</h4>
+                    <p id="ai-response" class="text-gray-700 whitespace-pre-wrap"></p>
+                </div>
+            </div>
+        </section>
+        -->
+
+        <section id="contact">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Me Contacter</h2>
+            <div class="max-w-xl mx-auto">
+                <p class="text-center mb-6 text-gray-600">Pour toute question ou opportunité, n'hésitez pas à m'envoyer un message via le formulaire ci-dessous ou directement par e-mail à <a href="mailto:cborne02@gmail.com" class="text-blue-600 hover:underline">cborne02@gmail.com</a>.</p>
+                <form action="https://formspree.io/f/xyzjqrrv" method="POST" class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nom Complet</label>
+                        <input type="text" id="name" name="name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Votre nom" required aria-required="true">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Adresse E-mail</label>
+                        <input type="email" id="email" name="email" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="votre.email@exemple.com" required aria-required="true">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Votre Message</label>
+                        <textarea id="message" name="message" rows="6" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Écrivez votre message ici..." required aria-required="true"></textarea>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button type="submit" class="btn btn-primary w-full">Envoyer le Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-8 text-center">
+        <div class="container mx-auto">
+            <p>&copy; 2025 Clarence Borne. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden opacity-0" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-container bg-white w-full max-w-2xl rounded-lg shadow-xl transform scale-95 overflow-y-auto max-h-screen">
+            <div class="p-6 relative">
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold" aria-label="Fermer la fenêtre modale">&times;</button>
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 mb-4"></h3>
+                <div id="modalDescription" class="text-gray-700 leading-relaxed mb-4"></div>
+                <div id="modalMediaContainer" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const projectData = {
+            horlogerie: {
+                title: "Conception de Composants Horlogers",
+                description: "Durant mon apprentissage chez Simon & Membrez SA, j'ai été chargé de la conception de divers composants pour des boîtiers de montre. Cela incluait la modélisation en 3D à l'aide de logiciels de CAO comme CATIA, ainsi que la création de plans techniques détaillés en 2D pour la fabrication.",
+               
+            },
+            cnc: {
+                title: "Stage Opérateur Machines CNC",
+                description: "Lors de mon stage de quatre mois chez Promess Fertigung GmbH à Berlin, j'ai acquis une expérience pratique significative dans le département de l'usinage. Mes responsabilités comprenaient la mise en marche et l'opération de rainureuses et de centres d'usinage CNC, ainsi que la gestion de la réception et de l'expédition des marchandises.",
+           
+            },
+            armee: {
+                title: "Expérience d'Officier - Armée Suisse",
+                description: `
+                    <p class="mb-4">Promu au grade de <strong>Lieutenant</strong> en décembre 2022, j'ai accompli un service pratique de 19 semaines en tant que chef de section. J'ai dirigé et instruit une section d'infanterie composée de 30 soldats et 4 chefs de groupe, ce qui m'a permis de mettre en pratique et de renforcer des compétences de conduite dans un environnement exigeant.</p>
+                    <h4 class="font-semibold text-lg mb-2">Compétences de leadership validées :</h4>
+                    <p class="mb-4">Cette expérience a été validée par le <strong>Certificat de Conduite Niveau 1 de l'Association Suisse des Cadres (ASC)</strong>, attestant des compétences suivantes :</p>
+                    <ul class="list-disc list-inside mb-4 space-y-1">
+                        <li><strong>Conduite et gestion d'équipe :</strong> Diriger en fonction des objectifs, motiver les collaborateurs et entretenir une culture du feedback.</li>
+                        <li><strong>Organisation et résolution de problèmes :</strong> Planifier les tâches de manière structurée et résoudre méthodiquement les problèmes.</li>
+                        <li><strong>Communication et gestion des conflits :</strong> Communiquer de manière adaptée et aborder les situations difficiles pour trouver des solutions.</li>
+                        <li><strong>Gestion de soi :</strong> Analyser ses propres expériences et gérer activement les facteurs de stress.</li>
+                    </ul>
+                `,
+          
+            },
+            heia_se2: {
+                title: "Projet HEIA SE2 : Rétro-ingénierie d'un compresseur",
+                description: "Ce projet académique consistait à réaliser la rétro-ingénierie complète d'un compresseur à air. Les étapes incluaient le démontage systématique, l'analyse fonctionnelle de chaque composant, la modélisation 3D de toutes les pièces sur un logiciel de CAO, et finalement, l'assemblage virtuel pour valider la conception."
+            },
+            heia_se34: {
+                title: "Projet HEIA SE3-4 : Robotique Eurobot",
+                description: "Développement d'un robot autonome en équipe pour participer à la compétition Eurobot. J'ai activement participé à la conception du robot principal et de ses différents actionneurs, un travail qui a nécessité une forte intégration entre la mécanique, l'électronique de commande et la programmation de la stratégie du robot.",
+               
+            },
+            lachat_metal: {
+                title: "Création du site web de Lachat Métal",
+                description: `J'ai conçu et développé le site web de Lachat Métal, une entreprise spécialisée dans la construction métallique et la maintenance industrielle. Ce projet comprenait le design du site web, le codage (réalisé avec HTML et CSS) ainsi que l'hébergement. Vous pouvez visiter le site ici : <a href="https://www.xn--lachat-mtal-ibb.ch/" target="_blank" class="text-blue-600 hover:underline">Lachat Métal</a>.`,
+            }
+        };
+
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalMediaContainer = document.getElementById('modalMediaContainer');
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (data) {
+                modalTitle.textContent = data.title;
+                modalDescription.innerHTML = data.description;
+                modalMediaContainer.innerHTML = '';
+
+                if (data.media && data.media.length > 0) {
+                    data.media.forEach(mediaItem => {
+                        if (mediaItem.type === 'image') {
+                            const img = document.createElement('img');
+                            img.src = mediaItem.src;
+                            img.alt = "Image du projet " + data.title;
+                            img.className = 'w-full rounded-lg shadow-md object-contain bg-white border border-gray-300';
+                            modalMediaContainer.appendChild(img);
+                        } else if (mediaItem.type === 'video') {
+                            const video = document.createElement('video');
+                            video.src = mediaItem.src;
+                            video.controls = true;
+                            video.className = 'w-full rounded-lg shadow-md';
+                            video.setAttribute('playsinline', '');
+                            modalMediaContainer.appendChild(video);
+                        }
+                    });
+                }
+
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modal.querySelector('.modal-container').classList.remove('scale-95');
+                }, 10);
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modal.querySelector('.modal-container').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.querySelectorAll('video').forEach(vid => vid.pause());
+            }, 300);
+        }
+
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // --- Script pour l'Assistant IA avec Netlify Functions ---
+        const aiForm = document.getElementById('ai-form');
+        const aiSubmitBtn = document.getElementById('ai-submit-btn');
+        const aiBtnText = document.getElementById('ai-btn-text');
+        const aiLoader = document.getElementById('ai-loader');
+        const aiResponseContainer = document.getElementById('ai-response-container');
+        const aiResponseEl = document.getElementById('ai-response');
+
+        aiForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            aiSubmitBtn.disabled = true;
+            aiBtnText.textContent = 'En cours...';
+            aiLoader.classList.remove('hidden');
+            aiResponseContainer.classList.add('hidden');
+
+            const formData = new FormData(aiForm);
+            const question = formData.get('question');
+            
+            try {
+                // L'URL pointe vers la fonction Netlify
+                const response = await fetch('/.netlify/functions/ask-gemini', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question: question })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    aiResponseEl.textContent = data.reply || "La réponse de l'assistant est arrivée, mais le format est inattendu.";
+                    aiResponseContainer.classList.remove('hidden');
+                } else {
+                    const errorData = await response.json();
+                    aiResponseEl.textContent = `Erreur: ${errorData.error || 'Une erreur est survenue.'}`;
+                    aiResponseContainer.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Erreur de communication avec la fonction Netlify:', error);
+                aiResponseEl.textContent = 'Erreur de connexion avec le serveur. Veuillez réessayer.';
+                aiResponseContainer.classList.remove('hidden');
+            } finally {
+                aiSubmitBtn.disabled = false;
+                aiBtnText.textContent = "Envoyer à l'IA";
+                aiLoader.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
