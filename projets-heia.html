@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>Projets HEIA-FR — Clarence Borne</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563eb'/><text x='16' y='22' font-family='Inter,sans-serif' font-size='14' font-weight='800' fill='white' text-anchor='middle'>CB</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.08s; }
+        .delay-2 { transition-delay: 0.16s; }
+        .delay-3 { transition-delay: 0.24s; }
+        .delay-4 { transition-delay: 0.32s; }
+        .hero-project {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d5ff 40%, #f5f3ff 100%);
+        }
+        img { max-width: 100%; height: auto; }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 8px 16px;
+            border: 1.5px solid #bfdbfe;
+            border-radius: 99px;
+            background: white;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .back-btn:hover { background: #eff6ff; border-color: #93c5fd; }
+        .skill-chip {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .project-card {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        @media (hover: hover) {
+            .project-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 14px 28px rgba(0,0,0,0.10);
+            }
+        }
+        /* Modal */
+        .modal-overlay { transition: opacity 0.3s ease; }
+        .modal-container { transition: transform 0.3s ease; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 bg-gray-50">
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg fixed w-full z-20 top-0">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+            <h1 class="text-xl sm:text-2xl font-bold">
+                <a href="index.html" class="hover:opacity-80 transition-opacity">Clarence Borne</a>
+            </h1>
+            <a href="index.html#parcours" class="back-btn" style="background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.4); color:white;">
+                ← Retour au parcours
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16 pb-16">
+
+        <!-- HERO -->
+        <section class="hero-project rounded-2xl sm:rounded-3xl mt-4 px-6 sm:px-10 py-10 sm:py-14 fade-in">
+            <div class="max-w-3xl">
+                <span class="skill-chip mb-4 inline-block" style="background:#e9d5ff;color:#6b21a8;">2023 – Présent</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-3 leading-tight">
+                    Bachelor Génie Mécanique — HEIA-FR
+                </h2>
+                <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                    Cursus bilingue français-allemand à la <strong>Haute École d'Ingénierie et d'Architecture de Fribourg</strong>.
+                    Projets et compétences couvrant la mécanique, l'électronique, la programmation, le web et l'énergétique.
+                </p>
+            </div>
+        </section>
+
+        <!-- GRILLE DE PROJETS -->
+        <section class="mt-10">
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 fade-in">Compétences acquises</h3>
+            <p class="text-gray-500 text-sm mb-6 fade-in">Cliquez sur une case pour afficher toutes les informations.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+
+                <!-- Compresseur -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in" onclick="openModal('compresseur')">
+                    <img src="Projet/compresseur/compresseur.png" alt="Rétro-ingénierie d'un compresseur" class="w-full h-44 object-contain bg-gray-50 border-b border-gray-100">
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#faf5ff;color:#6b21a8;">Siemens NX</span>
+                            <span class="skill-chip" style="background:#f0fdf4;color:#166534;">Modélisation 3D</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Rétro-ingénierie d'un Compresseur</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+                <!-- Eurobot -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in delay-1" onclick="openModal('eurobot')">
+                    <img src="Projet/Eurobot/GRU_Suisse.jpg" alt="Robot Eurobot" class="w-full h-44 object-cover border-b border-gray-100">
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#f0fdf4;color:#166534;">Robotique</span>
+                            <span class="skill-chip" style="background:#fef3c7;color:#92400e;">Électronique</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Robotique Eurobot</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+                <!-- Lachat Métal -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in delay-2" onclick="openModal('lachat')">
+                    <img src="Projet/lachat-metal.png" alt="Site web Lachat Métal" class="w-full h-44 object-cover border-b border-gray-100">
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#eef2ff;color:#4338ca;">HTML/CSS</span>
+                            <span class="skill-chip" style="background:#eff6ff;color:#1d4ed8;">Web</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Site Web Lachat Métal</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+                <!-- Conception plastique -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in" onclick="openModal('plastique')">
+                    <img src="Projet/conception%20plastique/fiber%20orientation%20moldflow.png" alt="Conception plastique – Moldflow" class="w-full h-44 object-contain bg-gray-50 border-b border-gray-100">
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#fdf4ff;color:#86198f;">Plasturgie</span>
+                            <span class="skill-chip" style="background:#fff7ed;color:#9a3412;">Moldflow</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Conception Plastique</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+                <!-- Vibrations -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in delay-1" onclick="openModal('vibration')">
+                    <div class="w-full h-44 flex items-center justify-center border-b border-gray-100" style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8,#3b82f6);">
+                        <div class="text-center">
+                            <div class="flex gap-2 justify-center">
+                                <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:rgba(255,255,255,0.2);color:#bfdbfe;">Analytique</span>
+                                <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:rgba(255,255,255,0.2);color:#bfdbfe;">FEM</span>
+                                <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:rgba(255,255,255,0.2);color:#bfdbfe;">Expérimental</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#eff6ff;color:#1d4ed8;">Analyse modale</span>
+                            <span class="skill-chip" style="background:#fef9c3;color:#854d0e;">Vibrométrie laser</span>
+                            <span class="skill-chip" style="background:#f0fdf4;color:#166534;">FEM · Nastran</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Dynamique & Vibrations — Analyse modale</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+                <!-- Énergie -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in delay-2" onclick="openModal('energie')">
+                    <img src="energie/thermodynamique.png" alt="Énergie – thermodynamique, transfert de chaleur, fluides" class="w-full h-44 object-contain bg-gray-50 border-b border-gray-100">
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#fff7ed;color:#9a3412;">Thermodynamique</span>
+                            <span class="skill-chip" style="background:#fee2e2;color:#991b1b;">Transfert de chaleur</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Énergie</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+                <!-- Composite -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in delay-3" onclick="openModal('composite')">
+                    <img src="Projet/composite/arc.jpg" alt="Pièce arquée en fibre de carbone" class="w-full h-44 object-cover border-b border-gray-100">
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#ecfeff;color:#0e7490;">Composites</span>
+                            <span class="skill-chip" style="background:#f0fdf4;color:#166534;">Fibres / Matrice</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Matériaux Composites</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+                <!-- FEM -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in" onclick="openModal('fem')">
+                    <img src="Projet/fem/fem_stress_mises.png" alt="Simulation FEM – carte de contraintes Von Mises sur filets" class="w-full h-44 object-cover border-b border-gray-100">
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#f0fdf4;color:#166534;">Éléments finis</span>
+                            <span class="skill-chip" style="background:#fdf4ff;color:#86198f;">FKM · Fatigue</span>
+                            <span class="skill-chip" style="background:#eff6ff;color:#1d4ed8;">Optimisation</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Simulation FEM — Analyses de structure</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+                <!-- Lean Manufacturing -->
+                <div class="project-card bg-white rounded-2xl shadow-md overflow-hidden fade-in delay-1" onclick="openModal('lean')">
+                    <div class="w-full h-44 flex items-center justify-center border-b border-gray-100" style="background:linear-gradient(135deg,#fef9c3,#fee2e2);">
+                        <span class="text-5xl">🏭</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="skill-chip" style="background:#fef9c3;color:#854d0e;">Lean</span>
+                            <span class="skill-chip" style="background:#f0fdf4;color:#166534;">Amélioration continue</span>
+                        </div>
+                        <h4 class="text-base font-bold text-gray-900 mb-1">Lean Manufacturing</h4>
+                        <span class="text-sm font-semibold text-purple-600">Voir le projet →</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BOUTON RETOUR -->
+        <div class="mt-10 fade-in delay-4">
+            <a href="index.html#parcours" class="back-btn">
+                ← Retour au parcours
+            </a>
+        </div>
+
+    </main>
+
+    <!-- MODAL PROJET -->
+    <div id="projectModal"
+         class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden opacity-0"
+         role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-container bg-white w-full max-w-2xl rounded-2xl shadow-2xl transform scale-95 overflow-y-auto max-h-[90vh]">
+            <div class="p-5 md:p-7 relative">
+                <button onclick="closeModal()"
+                        class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold transition-colors z-10"
+                        aria-label="Fermer la fenêtre modale">&times;</button>
+                <div class="flex flex-wrap gap-2 mb-3 pr-8" id="modalTags"></div>
+                <h3 id="modalTitle" class="text-xl md:text-2xl font-bold text-gray-900 mb-4 pr-8"></h3>
+                <div id="modalDescription" class="text-gray-700 leading-relaxed mb-4 text-sm md:text-base"></div>
+                <div id="modalMediaContainer" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-white px-6 py-8 mt-8">
+        <div class="container mx-auto text-center">
+            <p class="text-base font-semibold mb-1">Clarence Borne</p>
+            <p class="text-gray-400 text-sm">Ingénieur mécanique en formation · Fribourg, Suisse</p>
+        </div>
+    </footer>
+
+    <script>
+        // ---------------- DONNÉES PROJETS ----------------
+        const projectData = {
+            compresseur: {
+                title: "Rétro-ingénierie d'un Compresseur",
+                tags: [["Siemens NX","#faf5ff","#6b21a8"],["Rétro-ingénierie","#eff6ff","#1d4ed8"],["Modélisation 3D","#f0fdf4","#166534"]],
+                description: `<p>Projet académique de <strong>rétro-ingénierie complète d'un compresseur à air</strong> : démontage systématique, analyse fonctionnelle de chaque composant, modélisation 3D de toutes les pièces sur Siemens NX, puis assemblage virtuel pour valider la conception.</p>`,
+                media: [
+                    {type:'image', src:'Projet/compresseur/compresseur.png', caption:'Vue assemblée'},
+                    {type:'image', src:'Projet/compresseur/compresseur_exploser.png', caption:'Vue éclatée'},
+                    {type:'video', src:'Projet/compresseur/compresseur.mp4'}
+                ]
+            },
+            eurobot: {
+                title: "Robotique Eurobot",
+                tags: [["Robotique","#f0fdf4","#166534"],["Électronique","#fef3c7","#92400e"],["Programmation","#eff6ff","#1d4ed8"],["Eurobot","#faf5ff","#6b21a8"]],
+                description: `<p class="mb-3">Développement d'un <strong>robot autonome en équipe</strong> pour la compétition Eurobot. J'ai participé à la conception du robot principal et de ses actionneurs — un travail nécessitant une forte intégration entre mécanique, électronique de commande et programmation de la stratégie.</p>
+                <p>Ce projet m'a plongé dans la <strong>programmation et l'électronique</strong> avec enthousiasme — des domaines devenus de vraies passions.</p>`,
+                media: [
+                    {type:'image', src:'Projet/Eurobot/GRU_Suisse.jpg', caption:'Robot finalisé'},
+                    {type:'image', src:'Projet/Eurobot/Gru_construction.JPG', caption:'Phase de construction'},
+                    {type:'video', src:'Projet/Eurobot/Lequipe_RTFM_a_SwissEurobot_2025.mp4'}
+                ]
+            },
+            lachat: {
+                title: "Site Web de Lachat Métal",
+                tags: [["HTML/CSS","#eef2ff","#4338ca"],["Web","#eff6ff","#1d4ed8"],["Hébergement","#f0fdf4","#166534"]],
+                description: `<p>J'ai conçu et développé le site web de <strong>Lachat Métal</strong>, entreprise de construction métallique et maintenance industrielle : design complet, codage HTML/CSS et hébergement. <a href="https://www.xn--lachat-mtal-ibb.ch/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Visiter le site ↗</a></p>`,
+                media: [
+                    {type:'image', src:'Projet/lachat-metal.png', caption:'Site web Lachat Métal'}
+                ]
+            },
+            plastique: {
+                title: "Conception Plastique",
+                tags: [["Plasturgie","#fdf4ff","#86198f"],["Fabrication","#fff7ed","#9a3412"],["Matériaux","#f0fdf4","#166534"]],
+                description: `<p class="mb-3">Projet centré sur la <strong>conception de pièces plastiques injectées</strong>, en intégrant dès le départ les contraintes du procédé : dépouilles, épaisseurs uniformes, lignes de soudure, points d'injection et démoulage.</p>
+                <p>Modélisation d'un <strong>moule d'injection</strong> complet et simulations avec <strong>Autodesk Moldflow</strong> pour analyser le remplissage, l'orientation des fibres et optimiser les paramètres d'injection (température, pression, temps de cycle).</p>`,
+                media: [
+                    {type:'image', src:'Projet/conception%20plastique/fiber%20orientation%20moldflow.png', caption:'Orientation des fibres (Moldflow)'},
+                    {type:'video', src:'Projet/conception%20plastique/fill%20time%20moldflow.mp4', caption:'Temps de remplissage (Moldflow)'},
+                    {type:'video', src:'Projet/conception%20plastique/Plasturgie_en_genie_mecanique_-_HEIA-FR%20(1).mp4'}
+                ]
+            },
+            vibration: {
+                title: "Dynamique & Vibrations — Analyse modale",
+                tags: [["Analyse modale","#eff6ff","#1d4ed8"],["Vibrométrie laser","#fef9c3","#854d0e"],["Simcenter Nastran","#f0fdf4","#166534"],["FFT","#fdf4ff","#86198f"]],
+                description: `
+                <p class="mb-4 text-gray-700">L'analyse modale est la discipline qui permet de comprendre <strong>comment une structure vibre</strong> : à quelles fréquences elle entre en résonance, et quelle forme elle prend à chacune de ces fréquences. Dans ce cours de dynamique avancée, j'ai abordé ce problème par trois approches complémentaires, ce qui m'a donné une vision à la fois théorique, numérique et physique du phénomène.</p>
+
+                <div class="rounded-xl border border-blue-100 bg-blue-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Modélisation analytique</h4>
+                    <p class="text-sm text-gray-600">J'ai appris à <strong>construire un modèle dynamique simplifié</strong> d'une structure réelle : modélisation en poutre encastrée (théorie d'Euler-Bernoulli), réduction à un système à 1 degré de liberté, calcul de la rigidité flexionnelle d'une section composite par le théorème de Steiner, et déduction de la masse équivalente. Cette démarche analytique développe la capacité à <strong>raisonner sur les ordres de grandeur</strong> avant même de lancer un calcul, et à comprendre pourquoi un modèle simplifié diverge de la réalité (géométrie variable, matériau stratifié).</p>
+                </div>
+
+                <div class="rounded-xl border border-green-100 bg-green-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Simulation numérique — Simcenter Nastran</h4>
+                    <p class="text-sm text-gray-600">J'ai utilisé <strong>Simcenter Nastran</strong> pour réaliser une analyse modale numérique complète : extraction des modes propres sur un modèle 3D, gestion de la cohésion entre couches d'un matériau sandwich, puis analyse de réponse dynamique (réponse fréquentielle). Cette expérience m'a appris à <strong>configurer un solveur d'analyse modale</strong>, à interpréter les formes déformées de chaque mode et à identifier les sources d'écart avec la réalité (conditions aux limites, simplifications matérielles).</p>
+                </div>
+
+                <div class="rounded-xl border border-amber-100 bg-amber-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Mesure expérimentale — marteau d'impact & vibrométrie laser</h4>
+                    <p class="text-sm text-gray-600">J'ai mis en œuvre deux protocoles sur banc d'essai. La <strong>réponse impulsionnelle</strong> : excitation par marteau d'impact, mesure de la vitesse vibratoire par interféromètre laser sans contact (pour ne pas perturber la structure), transformation FFT du signal temporel en spectre fréquentiel pour identifier les pics de résonance. La <strong>réponse harmonique</strong> : balayage fréquentiel par pot vibrant pour reconstruire spatialement les formes modales sur toute la surface. Ces expériences m'ont appris à <strong>choisir et positionner des points de mesure</strong> de façon intelligente (guidé par la FEM), à distinguer un vrai mode d'un artefact, et à comprendre ce qu'un capteur peut ou ne peut pas détecter selon sa position et son orientation.</p>
+                </div>
+
+                <div class="rounded-xl border border-purple-100 bg-purple-50/40 p-4">
+                    <h4 class="font-bold text-gray-900 mb-2">Corrélation et lecture critique des résultats</h4>
+                    <p class="text-sm text-gray-600">La confrontation des trois approches est au cœur de la compétence développée : savoir <strong>expliquer physiquement chaque écart ou absence</strong>, plutôt qu'accepter les résultats tels quels. Un mode non détecté expérimentalement n'est pas une erreur — c'est un fait qui s'explique par la physique du capteur, la position du point de mesure, ou la nature du mode lui-même. Cette rigueur dans l'interprétation est transposable à n'importe quelle analyse de structure.</p>
+                </div>`,
+                media: [
+                    {type:'video', src:'Projet/vibration/Travail_pratique_en_genie_mecanique_-_HEIA-FR.mp4'}
+                ]
+            },
+            energie: {
+                title: "Énergie — Thermodynamique, Transfert de chaleur & Mécanique des fluides",
+                tags: [["Thermodynamique","#fef3c7","#92400e"],["Transfert de chaleur","#fee2e2","#991b1b"],["Mécanique des fluides","#eff6ff","#1d4ed8"]],
+                description: `<p class="mb-4">Un socle de compétences centré sur l'<strong>énergétique</strong> : comprendre, modéliser et dimensionner les échanges d'énergie au cœur des machines et des procédés industriels.</p>
+
+                <div class="rounded-xl border border-gray-200 bg-amber-50/40 p-4 mb-3">
+                    <img src="energie/thermodynamique.png" alt="Cycle de turbine à gaz (Joule-Brayton)" class="w-full h-40 object-contain bg-white rounded-lg border border-gray-200 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-1">🔥 Thermodynamique &amp; Énergétique</h4>
+                    <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                        <li>Systèmes ouverts / fermés, cycles de base</li>
+                        <li>Rendement &amp; analyse exergétique</li>
+                        <li>Cycle de Brayton (turbine à gaz)</li>
+                        <li>Moteurs à combustion interne — Otto, Diesel &amp; Sabaté (idéal et réel)</li>
+                    </ul>
+                </div>
+
+                <div class="rounded-xl border border-gray-200 bg-red-50/40 p-4 mb-3">
+                    <img src="energie/transfert_chaleur.png" alt="Échangeur de chaleur à faisceau de tubes" class="w-full h-40 object-contain bg-white rounded-lg border border-gray-200 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-1">♨️ Transfert de chaleur</h4>
+                    <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                        <li>Conduction 1D / 2D, stationnaire &amp; instationnaire</li>
+                        <li>Convection interne / externe (Reynolds, Prandtl, Nusselt)</li>
+                        <li>Rayonnement thermique (Planck, Wien, Stefan-Boltzmann)</li>
+                        <li>Échangeurs de chaleur — méthodes LMTD &amp; NTU</li>
+                    </ul>
+                </div>
+
+                <div class="rounded-xl border border-gray-200 bg-blue-50/40 p-4">
+                    <img src="energie/mecanique_fluides.png" alt="Installation hydroélectrique - turbine Pelton" class="w-full h-40 object-contain bg-white rounded-lg border border-gray-200 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-1">💧 Mécanique des fluides</h4>
+                    <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                        <li>Turbines à action — Pelton</li>
+                        <li>Turbines à réaction — Francis &amp; Kaplan</li>
+                        <li>Bilan énergétique &amp; rendements des turbomachines</li>
+                        <li>Lois de similitude &amp; phénomène de cavitation</li>
+                    </ul>
+                </div>`,
+                media: []
+            },
+            composite: {
+                title: "Matériaux Composites — Conception & Fabrication",
+                tags: [["Composites","#ecfeff","#0e7490"],["Fibre de carbone","#1f2937","#f9fafb"],["Stratifiés / ABD","#f0fdf4","#166534"],["Critères de rupture","#fdf4ff","#86198f"]],
+                description: `
+                <p class="mb-4 text-gray-700">Deux semestres de conception de structures légères m'ont permis de développer une maîtrise complète du cycle composite — du choix des matériaux jusqu'à la vérification structurale, avec une mise en pratique directe par la fabrication de pièces réelles en fibre de carbone.</p>
+
+                <div class="rounded-xl border border-cyan-100 bg-cyan-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Sélection des matériaux</h4>
+                    <p class="text-sm text-gray-600">Je sais choisir et argumenter la combinaison fibre–matrice–architecture adaptée à un cahier des charges. Je distingue les fibres de verre (E, S), carbone (HR, HM) et aramide selon les sollicitations dominantes, et je sélectionne la matrice — époxy, thermoplastique haute performance (PEEK, PPS) — en tenant compte du procédé et de l'environnement. L'architecture du renfort (UD, sergé, satin, tressage) dépend directement de la géométrie : le sergé pour les formes gauches, le satin pour les doubles courbures, le tressage pour les profils tubulaires.</p>
+                </div>
+
+                <div class="rounded-xl border border-teal-100 bg-teal-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Micromécanique du pli — prédire les propriétés</h4>
+                    <p class="text-sm text-gray-600">Je maîtrise la démarche qui permet de calculer les propriétés élastiques d'un pli UD (E<sub>l</sub>, E<sub>t</sub>, G<sub>lt</sub>, ν<sub>lt</sub>) à partir des seules données fibres et matrice, sans essais. Ce que j'ai vraiment intégré : E<sub>l</sub> est dominé par les fibres (modèle parallèle), E<sub>t</sub> et G<sub>lt</sub> sont dominés par la matrice — c'est cette asymétrie qui explique tout le comportement anisotrope. Un pli carbone IM à V<sub>f</sub>=60 % donne E<sub>l</sub> ≈ 170 GPa pour une densité de 1,6 g/cm³, soit environ 7× l'acier à masse équivalente.</p>
+                </div>
+
+                <div class="rounded-xl border border-green-100 bg-green-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Théorie des stratifiés — matrice ABD</h4>
+                    <p class="text-sm text-gray-600">Je sais construire la matrice ABD qui relie les efforts (N) et moments (M) aux déformations et courbures d'un empilement. Je comprends pourquoi la symétrie est non-négociable (B = 0 élimine le couplage flexion-extension), pourquoi équilibrer les plis +θ/−θ supprime les couplages cisaillement-extension, et comment choisir une séquence quasi-isotrope quand les directions de chargement sont multiples. Ma démarche : analyser les chargements dominants avant de définir l'empilement.</p>
+                </div>
+
+                <div class="rounded-xl border border-purple-100 bg-purple-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Critères de rupture</h4>
+                    <p class="text-sm text-gray-600">Je sais appliquer les critères interactifs (Tsai-Hill, Hoffmann, Tsai-Wu) pour vérifier la résistance d'un pli en contraintes planes. Je connais les limites de chacun : Tsai-Hill ne distingue pas traction et compression — dangereux en flexion. J'ai aussi compris que la rupture dans un composite est progressive : matrice d'abord, puis interface, puis fibres. Le délaminage, invisible en surface, est le mode le plus critique en flexion.</p>
+                </div>
+
+                <div class="rounded-xl border border-amber-100 bg-amber-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Procédés &amp; règles de conception</h4>
+                    <p class="text-sm text-gray-600">Je sais choisir entre infusion, RTM, autoclave ou estampage selon la cadence, la qualité requise (V<sub>f</sub>) et la géométrie. En conception, j'anticipe les défauts de fabrication — wrinkles, vides aux coins intérieurs, bridging — et j'applique les règles de drapage : ≥10 % de plis dans chaque direction, pas plus de 4 plis consécutifs de même orientation, toujours finir par un ±45° en surface. Je connais aussi les enjeux d'assemblage : collage structural (co-curing, co-bonding) et risque de corrosion galvanique métal–carbone.</p>
+                </div>
+
+                <div class="rounded-xl border border-gray-200 bg-gray-50/60 p-4">
+                    <h4 class="font-bold text-gray-900 mb-2">Réalisations — fabrication manuelle</h4>
+                    <p class="text-sm text-gray-600 mb-2">Mise en pratique directe par la fabrication de deux pièces en fibre de carbone : <strong>stratification manuelle (wet layup)</strong>, imprégnation résine, mise sous vide, démoulage et finition. En amont, optimisation CAO de l'<strong>épaisseur par zone</strong> (11 mm aux ancragess → 4–6 mm en partie courante) pour placer la matière uniquement là où les contraintes l'exigent.</p>
+                    <ul class="text-sm text-gray-600 list-disc list-inside space-y-1">
+                        <li>Structure arquée en fibre de carbone</li>
+                        <li>Arc de tir à l'arc en fibre de carbone</li>
+                    </ul>
+                </div>`,
+                media: [
+                    {type:'image', src:'Projet/composite/composite_epaisseur.png', caption:'Analyse CAO — épaisseur moyenne par zone'},
+                    {type:'image', src:'Projet/composite/composite_arche.jpg', caption:'Détourage de la pièce arquée en carbone'},
+                    {type:'image', src:'Projet/composite/composite_stratification.jpg', caption:'Stratification manuelle dans le moule'},
+                    {type:'image', src:'Projet/composite/composite_arc.jpg', caption:'Arc en fibre de carbone'}
+                ]
+            },
+            fem: {
+                title: "Simulation FEM — Analyses de structure",
+                tags: [["PrePoMax / CalculiX","#f0fdf4","#166534"],["FKM · Fatigue","#fdf4ff","#86198f"],["Contact","#eff6ff","#1d4ed8"],["Optimisation","#fef9c3","#854d0e"]],
+                description: `
+                <!-- Intro globale -->
+                <p class="mb-3 text-gray-700">Avant d'aborder la simulation numérique, j'ai construit les bases par des <strong>cours de statique et de résistance des matériaux</strong> : équilibre des structures, diagrammes d'efforts internes, calcul analytique des contraintes en traction, flexion et torsion. Cette approche analytique est essentielle — elle permet de vérifier l'ordre de grandeur des résultats FEM et d'éviter d'accepter aveuglément ce que le logiciel affiche.</p>
+                <p class="mb-3 text-gray-700">La FEM est venue en complément, pour traiter les géométries complexes que l'analytique ne peut pas résoudre. La méthode consiste à <strong>discrétiser la pièce en milliers d'éléments</strong>, définir les matériaux, chargements et conditions aux limites, puis résoudre le système. L'enjeu est de savoir <strong>construire un modèle pertinent</strong> et d'en <strong>interpréter les résultats de façon critique</strong> : raffiner le maillage là où les gradients de contrainte sont élevés (congés, racines de filets, interfaces de contact), choisir le bon type d'analyse et valider la cohérence physique des résultats.</p>
+                <p class="mb-4 text-gray-600 text-sm">Logiciels : <strong>PrePoMax / CalculiX</strong>, post-traitement <strong>Python</strong>.</p>
+
+                <!-- Résistance & Fatigue -->
+                <div class="rounded-xl border border-purple-100 bg-purple-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Résistance &amp; Fatigue — Critère FKM</h4>
+                    <p class="text-sm text-gray-600 mb-3">Au-delà du calcul élastique, j'ai travaillé sur la <strong>vérification de la tenue en plasticité</strong> : identifier les zones où la matière commence à plastifier, suivre l'évolution de la déformation à chaque incrément et détecter le <strong>point critique où la rupture est imminente</strong>. Le critère FKM tient compte de la triaxialité des contraintes — une pièce en traction multiaxiale ne se comporte pas comme en traction simple.</p>
+                    <img src="Projet/fem/fem_fkm_graph.png" alt="Graphe FKM PEEQ vs triaxialité" class="w-full rounded-lg border border-purple-100">
+                    <p class="text-xs text-center text-gray-400 mt-1.5">Trajectoires des nœuds critiques dans l'espace déformation plastique / triaxialité — le franchissement de la courbe limite indique la rupture</p>
+                </div>
+
+                <!-- Contact -->
+                <div class="rounded-xl border border-blue-100 bg-blue-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Analyse de Contact</h4>
+                    <p class="text-sm text-gray-600 mb-3">Le contact entre surfaces est l'une des non-linéarités les plus délicates : les surfaces peuvent glisser, se décoller ou entrer en plasticité localement. J'ai appris à <strong>définir des paires de contact, gérer le frottement</strong> et raffiner le maillage aux interfaces pour capturer fidèlement la distribution des efforts — notamment aux racines de filets où les contraintes sont maximales.</p>
+                    <img src="Projet/fem/fem_stress_mises.png" alt="Carte Von Mises sur filets" class="w-full rounded-lg border border-blue-100">
+                    <p class="text-xs text-center text-gray-400 mt-1.5">Carte de contraintes Von Mises sur une liaison filetée — identification des zones critiques aux racines de filets</p>
+                </div>
+
+                <!-- Optimisation paramétrique -->
+                <div class="rounded-xl border border-amber-100 bg-amber-50/40 p-4 mb-3">
+                    <h4 class="font-bold text-gray-900 mb-2">Optimisation Paramétrique</h4>
+                    <p class="text-sm text-gray-600">La FEM seule ne suffit pas à optimiser une conception : il faut <strong>faire varier les paramètres géométriques</strong> de manière systématique, comparer les réponses structurales et trouver le meilleur compromis masse / rigidité / résistance. Cette démarche m'a appris à <strong>raisonner sur la sensibilité</strong> d'un design à ses paramètres, et pas seulement à valider une géométrie figée.</p>
+                </div>
+
+                <!-- Optimisation topologique -->
+                <div class="rounded-xl border border-green-100 bg-green-50/40 p-4">
+                    <h4 class="font-bold text-gray-900 mb-2">Optimisation Topologique</h4>
+                    <p class="text-sm text-gray-600">L'optimisation topologique répond à la question : <em>où placer la matière pour que la pièce soit la plus rigide possible à masse fixée ?</em> Le solveur redistribue la densité élément par élément jusqu'à converger vers une <strong>architecture structurelle organique</strong> qu'on n'aurait pas trouvée intuitivement. J'ai appris à interpréter ces cartes de densité pour en tirer des formes fabricables et pertinentes.</p>
+                </div>`,
+                media: []
+            },
+            lean: {
+                title: "Lean Manufacturing",
+                tags: [["Lean","#fef9c3","#854d0e"],["Amélioration continue","#f0fdf4","#166534"],["Production","#eff6ff","#1d4ed8"]],
+                description: `<p class="mb-3">Principes du <strong>Lean Manufacturing</strong> appliqués à l'optimisation des processus de production : maximiser la valeur pour le client tout en éliminant les gaspillages (<em>muda</em>).</p>
+                <ul class="text-sm text-gray-600 list-disc list-inside space-y-1 mb-3">
+                    <li>Identification et réduction des 7 gaspillages</li>
+                    <li>Méthode <strong>5S</strong> et organisation des postes de travail</li>
+                    <li>Cartographie de la chaîne de valeur (Value Stream Mapping)</li>
+                    <li>Juste-à-temps (JIT) &amp; démarche d'amélioration continue (Kaizen)</li>
+                </ul>
+                <p class="text-gray-500 italic">Exemples concrets et cas d'application à venir.</p>`,
+                media: []
+            }
+        };
+
+        // ---------------- MODAL ----------------
+        const modal               = document.getElementById('projectModal');
+        const modalTitle          = document.getElementById('modalTitle');
+        const modalTags           = document.getElementById('modalTags');
+        const modalDescription    = document.getElementById('modalDescription');
+        const modalMediaContainer = document.getElementById('modalMediaContainer');
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+            modalTitle.textContent     = data.title;
+            modalDescription.innerHTML = data.description;
+            modalTags.innerHTML = '';
+            (data.tags || []).forEach(t => {
+                const s = document.createElement('span');
+                s.className = 'skill-chip';
+                s.style.background = t[1]; s.style.color = t[2];
+                s.textContent = t[0];
+                modalTags.appendChild(s);
+            });
+            modalMediaContainer.innerHTML = '';
+            (data.media || []).forEach(item => {
+                const wrap = document.createElement('div');
+                wrap.className = 'rounded-lg overflow-hidden border border-gray-200 bg-white';
+                if (item.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = item.src; img.alt = data.title;
+                    img.className = 'w-full object-contain bg-white';
+                    wrap.appendChild(img);
+                } else if (item.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = item.src; video.controls = true;
+                    video.setAttribute('playsinline', '');
+                    video.className = 'w-full bg-black';
+                    wrap.appendChild(video);
+                }
+                if (item.caption) {
+                    const cap = document.createElement('p');
+                    cap.className = 'text-xs text-center text-gray-400 py-1.5';
+                    cap.textContent = item.caption;
+                    wrap.appendChild(cap);
+                }
+                modalMediaContainer.appendChild(wrap);
+            });
+            modal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.modal-container').classList.remove('scale-95');
+            });
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modal.querySelector('.modal-container').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.querySelectorAll('video').forEach(v => v.pause());
+            }, 300);
+        }
+
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // ---------------- FADE-IN ----------------
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+    </script>
+</body>
+</html>

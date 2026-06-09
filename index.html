@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>Clarence Borne — Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563eb'/><text x='16' y='22' font-family='Inter,sans-serif' font-size='14' font-weight='800' fill='white' text-anchor='middle'>CB</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ---- Boutons ---- */
+        .btn {
+            @apply inline-flex items-center justify-center px-5 py-2.5 border border-transparent font-medium rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-300 text-sm;
+        }
+        @media (min-width: 640px) {
+            .btn { @apply px-6 py-3 text-base; }
+        }
+        .btn-primary  { @apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500; }
+        .btn-secondary { @apply text-blue-700 bg-blue-100 hover:bg-blue-200 focus:ring-blue-500; }
+
+        /* ---- Transitions modal ---- */
+        .modal-overlay { transition: opacity 0.3s ease; }
+        .modal-container { transition: transform 0.3s ease; }
+
+        /* ---- Défilement fluide ---- */
+        html { scroll-behavior: smooth; }
+
+        /* ---- Padding sections ---- */
+        section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+        @media (min-width: 640px)  { section { padding-top: 3rem;   padding-bottom: 3rem; } }
+        @media (min-width: 1024px) { section { padding-top: 4rem;   padding-bottom: 4rem; } }
+
+        /* ---- Fade-in au scroll ---- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.08s; }
+        .delay-2 { transition-delay: 0.16s; }
+        .delay-3 { transition-delay: 0.24s; }
+        .delay-4 { transition-delay: 0.32s; }
+
+        /* ---- Timeline ---- */
+        .timeline { position: relative; padding-left: 2.25rem; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px; top: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #6366f1, #a78bfa);
+            border-radius: 99px;
+        }
+        .timeline-item { position: relative; margin-bottom: 1.5rem; }
+        .timeline-dot {
+            position: absolute;
+            left: -2rem; top: 1.1rem;
+            width: 13px; height: 13px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        /* ---- Parcours serpentin (timeline alternée) ---- */
+        .alt-timeline { position: relative; max-width: 60rem; margin: 0 auto; }
+        .alt-timeline::before {
+            content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 3px; border-radius: 99px;
+            background: linear-gradient(to bottom, #a855f7, #6366f1, #3b82f6);
+        }
+        .alt-item { position: relative; width: 50%; box-sizing: border-box; margin-bottom: 2.5rem; }
+        .alt-item.left  { left: 0;   padding-right: 2.6rem; text-align: right; }
+        .alt-item.right { left: 50%; padding-left: 2.6rem;  text-align: left; }
+        .alt-item:last-child { margin-bottom: 0; }
+        .alt-dot {
+            position: absolute; top: 1.25rem; width: 16px; height: 16px;
+            border-radius: 50%; border: 3px solid #fff; z-index: 2;
+        }
+        .alt-item.left  .alt-dot { right: -8px; }
+        .alt-item.right .alt-dot { left: -8px; }
+        .alt-card {
+            display: inline-block; text-align: left;
+            background: #fff; border-radius: 1rem;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.07);
+            border: 1px solid #eef2f7; padding: 1rem 1.15rem;
+        }
+        @media (max-width: 767px) {
+            .alt-timeline::before { left: 8px; transform: none; }
+            .alt-item, .alt-item.left, .alt-item.right {
+                width: 100%; left: 0; text-align: left;
+                padding-left: 2.2rem; padding-right: 0;
+            }
+            .alt-item.left .alt-dot, .alt-item.right .alt-dot { left: 1px; right: auto; }
+        }
+
+        /* ---- Hover cartes ---- */
+        .interest-card, .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        @media (hover: hover) {
+            .interest-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 18px 36px rgba(59, 130, 246, 0.13);
+            }
+            .project-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.10);
+            }
+        }
+
+        /* ---- Bouton toggle "+" ---- */
+        .toggle-plus-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2563eb;
+            border: 1.5px solid #bfdbfe;
+            border-radius: 99px;
+            padding: 4px 12px;
+            background: #eff6ff;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            margin-top: 0.75rem;
+        }
+        .toggle-plus-btn:hover { background: #dbeafe; border-color: #93c5fd; }
+
+        .toggle-plus-icon {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1;
+            transition: transform 0.25s ease;
+        }
+        .toggle-plus-btn.open .toggle-plus-icon { transform: rotate(45deg); }
+
+        /* ---- Panel expandable ---- */
+        .expand-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .expand-panel.open {
+            max-height: 2000px;
+            opacity: 1;
+        }
+
+        /* ---- Curseur typewriter ---- */
+        .tw-cursor {
+            display: inline-block;
+            width: 2px; height: 1.1em;
+            background-color: #60a5fa;
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: blink 0.8s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* ---- Flèche rebondissante ---- */
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(8px); }
+        }
+        .bounce-slow { animation: bounce-slow 1.8s ease-in-out infinite; }
+
+        /* ---- Hero fond ---- */
+        .hero-bg {
+            background: radial-gradient(ellipse at top left, #eff6ff 0%, #f8fafc 60%);
+        }
+
+        /* ---- Citation ---- */
+        .quote-block {
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(to right, #eff6ff, #f8fafc);
+        }
+
+        /* ---- Menu mobile ---- */
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: flex; }
+
+        /* ---- Loader ---- */
+        .loader {
+            border-top-color: #3498db;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ---- Images responsive ---- */
+        img { max-width: 100%; height: auto; }
+
+        /* ---- Modal plein écran sur mobile ---- */
+        @media (max-width: 639px) {
+            .modal-container {
+                border-radius: 1rem 1rem 0 0 !important;
+                position: fixed !important;
+                bottom: 0; left: 0; right: 0;
+                width: 100% !important;
+                max-width: 100% !important;
+                max-height: 85vh;
+            }
+            #projectModal {
+                align-items: flex-end !important;
+            }
+        }
+
+        /* ---- Mini projet card dans timeline ---- */
+        .mini-project-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .mini-project-card:hover {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            transform: translateX(3px);
+        }
+
+        /* ---- Mini activité card dans intérêts ---- */
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .activity-item:last-child { border-bottom: none; }
+    </style>
+</head>
+<body class="font-inter antialiased text-gray-900 bg-gray-50">
+
+    <!-- ================================================================ -->
+    <!-- HEADER / NAV                                                       -->
+    <!-- ================================================================ -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg fixed w-full z-20 top-0">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+
+            <!-- Logo -->
+            <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold flex-shrink-0">
+                <a href="#accueil" class="hover:opacity-80 transition-opacity">Clarence Borne</a>
+            </h1>
+
+            <!-- Nav bureau -->
+            <nav aria-label="Navigation principale" class="hidden lg:block">
+                <ul class="flex gap-5 text-sm xl:text-base">
+                    <li><a href="#accueil"     class="hover:text-blue-200 transition-colors">Accueil</a></li>
+                    <li><a href="#a-propos"    class="hover:text-blue-200 transition-colors">À Propos</a></li>
+                    <li><a href="#parcours"    class="hover:text-blue-200 transition-colors">Parcours</a></li>
+                    <li><a href="#competences" class="hover:text-blue-200 transition-colors">Compétences</a></li>
+                    <li><a href="#interets"    class="hover:text-blue-200 transition-colors">En Dehors du Travail</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger -->
+            <button id="burger-btn"
+                    class="lg:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 focus:outline-none rounded-lg hover:bg-blue-500 transition-colors"
+                    aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="burger-line block w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+                <span class="burger-line block w-6 h-0.5 bg-white transition-all duration-300"></span>
+                <span class="burger-line block w-6 h-0.5 bg-white transition-all duration-300 origin-center"></span>
+            </button>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobile-menu"
+             class="flex-col bg-blue-700 border-t border-blue-500 lg:hidden"
+             role="navigation">
+            <a href="#accueil"     onclick="closeMobileMenu()" class="block px-5 py-3.5 text-white text-base border-b border-blue-600 hover:bg-blue-600 transition-colors">Accueil</a>
+            <a href="#a-propos"    onclick="closeMobileMenu()" class="block px-5 py-3.5 text-white text-base border-b border-blue-600 hover:bg-blue-600 transition-colors">À Propos</a>
+            <a href="#parcours"    onclick="closeMobileMenu()" class="block px-5 py-3.5 text-white text-base border-b border-blue-600 hover:bg-blue-600 transition-colors">Parcours</a>
+            <a href="#competences" onclick="closeMobileMenu()" class="block px-5 py-3.5 text-white text-base border-b border-blue-600 hover:bg-blue-600 transition-colors">Compétences</a>
+            <a href="#interets"    onclick="closeMobileMenu()" class="block px-5 py-3.5 text-white text-base hover:bg-blue-600 transition-colors">En Dehors du Travail</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-3 sm:px-4 lg:px-6 mt-14 sm:mt-16">
+
+        <!-- ============================================================ -->
+        <!-- HERO                                                          -->
+        <!-- ============================================================ -->
+        <section id="accueil" class="hero-bg flex flex-col items-center justify-center text-center py-10 sm:py-16 lg:py-24 rounded-2xl sm:rounded-3xl mt-3 sm:mt-4">
+            <div class="flex flex-col items-center fade-in px-3 sm:px-6 w-full">
+
+                <div class="relative mb-5 sm:mb-6">
+                    <img src="photo-perso/!personnes_ETUDIANTS.jpg"
+                         alt="Photo de profil de Clarence Borne"
+                         class="rounded-full w-28 h-36 sm:w-36 sm:h-44 lg:w-40 lg:h-48 object-cover border-4 border-blue-400 shadow-xl">
+                    <span class="absolute -bottom-2 -right-2 bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow whitespace-nowrap">
+                        En recherche d'emploi
+                    </span>
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-800 mb-3 leading-tight px-2">
+                    Bienvenu sur mon portfolio
+                </h2>
+
+                <p class="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl lg:max-w-2xl leading-relaxed mb-7 sm:mb-8 px-2">
+                    Cet page est un instantané de mon parcours, le reflet des expériences qui m'ont construit au fil des années.
+                    C'est un espace où se croisent mes différentes expériences professionnelles, mes apprentissages et ce qui m'anime au quotidien.
+                    Je vous laisse découvrir le chemin qui m'a mené jusqu'ici juste en dessous.
+                    le portfolio n'est pas totalement complet, je travaille encore à l'ajout de projets et d'expériences, mais n'hésitez pas à me contacter si vous souhaitez en savoir plus sur mon parcours ou discuter d'opportunités professionnelles.
+                    
+                </p>
+
+
+
+                <a href="#a-propos" class="mt-8 sm:mt-10 text-gray-400 hover:text-blue-500 transition-colors bounce-slow">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 1 — À PROPOS                                         -->
+        <!-- ============================================================ -->
+        <section id="a-propos" class="pt-6 sm:pt-8 lg:pt-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-5 text-center fade-in">À Propos de Moi</h2>
+            <div class="bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-md max-w-4xl mx-auto fade-in">
+                <div class="text-gray-700 leading-relaxed space-y-4 text-sm sm:text-base">
+                    <p>
+                        Mon parcours est un mélange de <strong>précision horlogère, d'ingénierie mécanique et de leadership</strong>.
+                        Tout a commencé par un apprentissage de <strong>dessinateur en construction microtechnique</strong> chez Simon&nbsp;&amp;&nbsp;Membrez SA
+                        (aujourd'hui Blancpain), où j'ai développé une expertise en conception de boîtiers de montres sur CATIA V5,
+                        alliant design et contraintes de fabrication. En parallèle, j'ai obtenu une <strong>maturité professionnelle technique</strong>.
+                    </p>
+                    <p>
+                        Désireux d'élargir mes horizons, je suis parti pour un semestre à <strong>Berlin</strong> afin de perfectionner mon
+                        allemand — une aventure humaine autant qu'académique, complétée par un <strong>stage pratique en usinage CNC</strong>.
+                        À mon retour, j'ai effectué mon service militaire et gravi les échelons jusqu'au grade de <strong>Lieutenant</strong>.
+                        Commander une section de 30 soldats m'a appris que la technique sans l'humain ne vaut pas grand-chose.
+                    </p>
+                    <p>
+                        Aujourd'hui, je suis <strong>étudiant en génie mécanique à la HEIA de Fribourg</strong> dans un cursus bilingue
+                        français-allemand. Je m'implique dans des projets qui me font sortir de ma zone de confort :
+                        rétro-ingénierie d'un compresseur sur Siemens NX, conception d'un robot pour <strong>Eurobot</strong>
+                        — un projet qui m'a plongé dans la programmation et l'électronique avec beaucoup d'enthousiasme.
+                    </p>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 2 — PARCOURS (TIMELINE avec projets expandables)     -->
+        <!-- ============================================================ -->
+        <section id="parcours">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center fade-in">Mon Parcours</h2>
+            <div class="alt-timeline">
+
+                <!-- 1 : HEIA-FR -->
+                <div class="alt-item left fade-in">
+                    <div class="alt-dot bg-purple-500" style="box-shadow:0 0 0 3px #a855f7;"></div>
+                    <div class="alt-card">
+                        <span class="text-xs font-semibold text-purple-600 bg-purple-100 px-2 py-1 rounded-full">2023 – Présent</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-900 mt-2">Bachelor Génie Mécanique — HEIA-FR</h3>
+                        <p class="text-gray-500 text-sm mt-1">
+                            Cursus bilingue français-allemand. Projets académiques : rétro-ingénierie d'un compresseur,
+                            robot Eurobot, site web Lachat Métal. 
+                        </p>
+                        <a href="projets-heia.html" class="toggle-plus-btn" style="text-decoration:none;">
+                            <span class="toggle-plus-icon">+</span><span>Voir les projets</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2 : Lieutenant -->
+                <div class="alt-item right fade-in delay-1">
+                    <div class="alt-dot bg-red-500" style="box-shadow:0 0 0 3px #ef4444;"></div>
+                    <div class="alt-card">
+                        <span class="text-xs font-semibold text-red-600 bg-red-100 px-2 py-1 rounded-full">2022 - 2023</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-900 mt-2">Lieutenant — Armée Suisse</h3>
+                        <p class="text-gray-500 text-sm mt-1">
+                            Promotion au grade de Lieutenant après l'école d'officiers. Commandement d'une section de
+                            30 soldats pendant 19 semaines. Obtention du Certificat de Conduite Niveau 1 de l'ASC. Permis C1E &amp; D1E également obtenus.
+                        </p>
+                        <a href="projets-armee.html" class="toggle-plus-btn" style="text-decoration:none;">
+                            <span class="toggle-plus-icon">+</span><span>Voir les projets</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3 : Berlin & CNC -->
+                <div class="alt-item left fade-in delay-2">
+                    <div class="alt-dot bg-orange-500" style="box-shadow:0 0 0 3px #f97316;"></div>
+                    <div class="alt-card">
+                        <span class="text-xs font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded-full">2021 – 2022</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-900 mt-2">Semestre à Berlin &amp; Stage CNC</h3>
+                        <p class="text-gray-500 text-sm mt-1">
+                            Perfectionnement en allemand à Berlin, suivi d'un stage de 4 mois en tant qu'opérateur CNC
+                            chez Promess Fertigung GmbH.
+                        </p>
+                        <a href="projets-berlin.html" class="toggle-plus-btn" style="text-decoration:none;">
+                            <span class="toggle-plus-icon">+</span><span>Voir les projets</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4 : CFC & Maturité -->
+                <div class="alt-item right fade-in delay-1">
+                    <div class="alt-dot bg-blue-500" style="box-shadow:0 0 0 3px #3b82f6;"></div>
+                    <div class="alt-card">
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-full">2017 – 2021</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-900 mt-2">CFC &amp; Maturité Professionnelle</h3>
+                        <p class="text-gray-500 text-sm mt-1">
+                            Dessinateur en construction microtechnique chez Simon &amp; Membrez SA (Blancpain).
+                            Formation à la précision horlogère avec CATIA V5, incluant les bases et les applications horlogères, ainsi que l'obtention de la maturité professionnelle technique.
+                        </p>
+                        <a href="projets-cfc.html" class="toggle-plus-btn" style="text-decoration:none;">
+                            <span class="toggle-plus-icon">+</span><span>Voir les projets</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5 : École obligatoire -->
+                <div class="alt-item left fade-in delay-2">
+                    <div class="alt-dot bg-gray-500" style="box-shadow:0 0 0 3px #6b7280;"></div>
+                    <div class="alt-card">
+                        <span class="text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-1 rounded-full">2006 – 2017</span>
+                        <h3 class="text-base md:text-lg font-semibold text-gray-900 mt-2">École obligatoire</h3>
+                        <p class="text-gray-500 text-sm mt-1">
+                            Scolarité obligatoire avec les bases de l'enseignement secondaire et la préparation au parcours professionnel.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 3 — COMPÉTENCES                                      -->
+        <!-- ============================================================ -->
+        <section id="competences">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-7 text-center fade-in">Mes Compétences</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+
+                <div class="bg-white p-4 sm:p-5 lg:p-6 rounded-2xl shadow-md fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 text-blue-600 rounded-full p-3 mr-3 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-base md:text-xl font-semibold text-gray-900">Conception &amp; CAO</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+                        <li class="flex items-center"><span class="font-bold mr-2 text-blue-500">•</span>CATIA V5 (Basic &amp; Surfacique)</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-blue-500">•</span>Siemens NX</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-blue-500">•</span>Conception Mécanique</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-blue-500">•</span>Dessin Technique 2D/3D</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-blue-500">•</span>Rétro-ingénierie</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-5 md:p-6 rounded-2xl shadow-md fade-in delay-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 text-red-600 rounded-full p-3 mr-3 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-base md:text-xl font-semibold text-gray-900">Gestion &amp; Leadership</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+                        <li class="flex items-center"><span class="font-bold mr-2 text-red-500">•</span>Gestion de Projet</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-red-500">•</span>Management d'équipe (30 pers.)</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-red-500">•</span>Communication &amp; Présentation</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-red-500">•</span>Planification &amp; Organisation</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-5 md:p-6 rounded-2xl shadow-md fade-in delay-2">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 text-green-600 rounded-full p-3 mr-3 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-base md:text-xl font-semibold text-gray-900">Robotique &amp; Informatique</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+                        <li class="flex items-center"><span class="font-bold mr-2 text-green-500">•</span>Programmation (Python, HTML, CSS)</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-green-500">•</span>Électronique de commande</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-green-500">•</span>Suite O365, LaTeX</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-5 md:p-6 rounded-2xl shadow-md fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 text-indigo-600 rounded-full p-3 mr-3 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-base md:text-xl font-semibold text-gray-900">Fabrication &amp; Qualité</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+                        <li class="flex items-center"><span class="font-bold mr-2 text-indigo-500">•</span>Usinage sur machines CNC</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-indigo-500">•</span>Procédés de fabrication</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-indigo-500">•</span>Contrôle qualité</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-indigo-500">•</span>Montage et assemblage</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-5 md:p-6 rounded-2xl shadow-md fade-in delay-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 text-yellow-600 rounded-full p-3 mr-3 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h-3.248c-1.105 0-2-.9-2-2v-3.362c0-1.105.895-2 2-2h3.248c1.105 0 2 .9 2 2v3.362c0 1.105-.895 2-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-base md:text-xl font-semibold text-gray-900">Langues</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600 text-sm md:text-base">
+                        <li class="flex items-center"><span class="font-bold mr-2 text-yellow-500">•</span>Français (Langue maternelle)</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-yellow-500">•</span>Allemand (B2 – Cursus bilingue)</li>
+                        <li class="flex items-center"><span class="font-bold mr-2 text-yellow-500">•</span>Anglais (B2)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 4 — EN DEHORS DU TRAVAIL                             -->
+        <!-- ============================================================ -->
+        <section id="interets">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center fade-in">En Dehors du Travail</h2>
+            <p class="text-gray-500 text-center mb-7 fade-in text-sm sm:text-base">Ce qui m'anime au quotidien</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 max-w-3xl mx-auto">
+
+                <!-- Code & Automatisation -->
+                <div class="interest-card bg-white rounded-2xl shadow-md fade-in overflow-hidden">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">💻</div>
+                        <h3 class="font-semibold text-gray-900 text-base">Code &amp; Automatisation</h3>
+                        <p class="text-gray-500 text-sm mt-2">Intéressé par l'innovation je me tiens à jour des dernières tendances (IA, Automatisation)</p>
+                        <button class="toggle-plus-btn mx-auto" onclick="togglePanel('panel-code', this)" aria-expanded="false">
+                            <span class="toggle-plus-icon">+</span>
+                            <span class="toggle-plus-label">Voir les activités</span>
+                        </button>
+                    </div>
+                    <div id="panel-code" class="expand-panel px-5 pb-4">
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">🌐</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Création de ce portfolio</p>
+                                <p class="text-xs text-gray-500">Design et développement web en HTML/CSS/JS</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">🤖</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Assistant IA personnel</p>
+                                <p class="text-xs text-gray-500">Exploration de l'IA générative et automatisation de tâches</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">🐍</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Scripts Python</p>
+                                <p class="text-xs text-gray-500">Automatisation de processus répétitifs et traitement de données</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voyages -->
+                <div class="interest-card bg-white rounded-2xl shadow-md fade-in delay-1 overflow-hidden">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">✈️</div>
+                        <h3 class="font-semibold text-gray-900 text-base">Voyages</h3>
+                        <p class="text-gray-500 text-sm mt-2">Découvrir d'autres cultures et mentalités — Berlin n'était qu'un début</p>
+                        <button class="toggle-plus-btn mx-auto" onclick="togglePanel('panel-voyages', this)" aria-expanded="false">
+                            <span class="toggle-plus-icon">+</span>
+                            <span class="toggle-plus-label">Voir les activités</span>
+                        </button>
+                    </div>
+                    <div id="panel-voyages" class="expand-panel px-5 pb-4">
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">🇩🇪</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Semestre à Berlin</p>
+                                <p class="text-xs text-gray-500">Immersion linguistique et culturelle en Allemagne</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">🗺️</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Road trips en Europe</p>
+                                <p class="text-xs text-gray-500">Exploration de différents pays et cultures européens</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">🌍</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Découverte de nouvelles langues</p>
+                                <p class="text-xs text-gray-500">Anglais, allemand — et toujours curieux d'en apprendre plus</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sport -->
+                <div class="interest-card bg-white rounded-2xl shadow-md fade-in delay-2 overflow-hidden">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">🏃</div>
+                        <h3 class="font-semibold text-gray-900 text-base">Sport</h3>
+                        <p class="text-gray-500 text-sm mt-2">Course à pied et randonnée pour me ressourcer, foot et hockey pour le plaisir</p>
+                        <button class="toggle-plus-btn mx-auto" onclick="togglePanel('panel-sport', this)" aria-expanded="false">
+                            <span class="toggle-plus-icon">+</span>
+                            <span class="toggle-plus-label">Voir les activités</span>
+                        </button>
+                    </div>
+                    <div id="panel-sport" class="expand-panel px-5 pb-4">
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">🏃</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Course à pied</p>
+                                <p class="text-xs text-gray-500">Sortie régulières pour garder la forme et me vider la tête</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">🏔️</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Randonnée en montagne</p>
+                                <p class="text-xs text-gray-500">Escapades dans les Alpes suisses pour me ressourcer</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <span class="text-lg flex-shrink-0">⚽</span>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800">Football &amp; Hockey sur glace</p>
+                                <p class="text-xs text-gray-500">Sports d'équipe pour le plaisir et la cohésion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================================================================ -->
+    <!-- FOOTER                                                            -->
+    <!-- ================================================================ -->
+    <footer class="bg-gray-800 text-white px-6 py-8 mt-8">
+        <div class="container mx-auto text-center">
+            <p class="text-base md:text-lg font-semibold mb-1">Clarence Borne</p>
+            <p class="text-gray-400 text-sm mb-3">Ingénieur mécanique en formation · Fribourg, Suisse</p>
+            <p class="text-gray-500 text-xs md:text-sm">© 2025 Clarence Borne. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- ================================================================ -->
+    <!-- MODAL PROJETS                                                     -->
+    <!-- ================================================================ -->
+    <div id="projectModal"
+         class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden opacity-0"
+         role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-container bg-white w-full max-w-2xl rounded-2xl shadow-2xl transform scale-95 overflow-y-auto max-h-[90vh]">
+            <div class="p-5 md:p-6 relative">
+                <button onclick="closeModal()"
+                        class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold transition-colors"
+                        aria-label="Fermer la fenêtre modale">&times;</button>
+                <h3 id="modalTitle" class="text-xl md:text-2xl font-bold text-gray-900 mb-4 pr-8"></h3>
+                <div id="modalDescription" class="text-gray-700 leading-relaxed mb-4 text-sm md:text-base"></div>
+                <div id="modalMediaContainer" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================ -->
+    <!-- SCRIPTS                                                           -->
+    <!-- ================================================================ -->
+    <script>
+        // ----------------------------------------------------------------
+        // HAMBURGER MENU
+        // ----------------------------------------------------------------
+        const burgerBtn  = document.getElementById('burger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const burgerLines = burgerBtn.querySelectorAll('.burger-line');
+
+        burgerBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('open');
+            mobileMenu.classList.toggle('open', !isOpen);
+            burgerBtn.setAttribute('aria-expanded', String(!isOpen));
+            if (!isOpen) {
+                burgerLines[0].style.transform = 'translateY(8px) rotate(45deg)';
+                burgerLines[1].style.opacity   = '0';
+                burgerLines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+            } else {
+                burgerLines[0].style.transform = '';
+                burgerLines[1].style.opacity   = '';
+                burgerLines[2].style.transform = '';
+            }
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            burgerLines[0].style.transform = '';
+            burgerLines[1].style.opacity   = '';
+            burgerLines[2].style.transform = '';
+        }
+
+        // ----------------------------------------------------------------
+        // TOGGLE PANEL (expandable +)
+        // ----------------------------------------------------------------
+        function togglePanel(panelId, btn) {
+            const panel = document.getElementById(panelId);
+            const isOpen = panel.classList.contains('open');
+            panel.classList.toggle('open', !isOpen);
+            btn.classList.toggle('open', !isOpen);
+            btn.setAttribute('aria-expanded', String(!isOpen));
+            const label = btn.querySelector('.toggle-plus-label');
+            if (label) {
+                label.textContent = !isOpen ? 'Masquer' : 'Voir les activités';
+                // For timeline panels
+                if (panelId.startsWith('panel-cfc') || panelId.startsWith('panel-berlin') ||
+                    panelId.startsWith('panel-armee') || panelId.startsWith('panel-heia')) {
+                    label.textContent = !isOpen ? 'Masquer' : 'Voir les projets';
+                }
+            }
+        }
+
+        // ----------------------------------------------------------------
+        // PROJECT DATA
+        // ----------------------------------------------------------------
+        const projectData = {
+            horlogerie: {
+                title: "Conception de Composants Horlogers",
+                description: "Durant mon apprentissage chez Simon & Membrez SA, j'ai été chargé de la conception de divers composants pour des boîtiers de montre. Cela incluait la modélisation en 3D à l'aide de logiciels de CAO comme CATIA, ainsi que la création de plans techniques détaillés en 2D pour la fabrication."
+            },
+            cnc: {
+                title: "Stage Opérateur Machines CNC",
+                description: "Lors de mon stage de quatre mois chez Promess Fertigung GmbH à Berlin, j'ai acquis une expérience pratique significative dans le département de l'usinage. Mes responsabilités comprenaient la mise en marche et l'opération de rainureuses et de centres d'usinage CNC, ainsi que la gestion de la réception et de l'expédition des marchandises."
+            },
+            armee: {
+                title: "Expérience d'Officier — Armée Suisse",
+                description: `
+                    <p class="mb-4">Promu au grade de <strong>Lieutenant</strong> en décembre 2022, j'ai accompli un service pratique de 19 semaines en tant que chef de section. J'ai dirigé et instruit une section d'infanterie composée de 30 soldats et 4 chefs de groupe, ce qui m'a permis de mettre en pratique et de renforcer des compétences de conduite dans un environnement exigeant.</p>
+                    <h4 class="font-semibold text-lg mb-2">Compétences de leadership validées :</h4>
+                    <p class="mb-3">Cette expérience a été validée par le <strong>Certificat de Conduite Niveau 1 de l'Association Suisse des Cadres (ASC)</strong> :</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li><strong>Conduite et gestion d'équipe :</strong> Diriger en fonction des objectifs, motiver et entretenir une culture du feedback.</li>
+                        <li><strong>Organisation et résolution de problèmes :</strong> Planifier de manière structurée et résoudre méthodiquement les problèmes.</li>
+                        <li><strong>Communication et gestion des conflits :</strong> Communiquer de manière adaptée et aborder les situations difficiles.</li>
+                        <li><strong>Gestion de soi :</strong> Analyser ses propres expériences et gérer activement les facteurs de stress.</li>
+                    </ul>
+                `
+            },
+            heia_se2: {
+                title: "Projet HEIA SE2 : Rétro-ingénierie d'un compresseur",
+                description: "Ce projet académique consistait à réaliser la rétro-ingénierie complète d'un compresseur à air. Les étapes incluaient le démontage systématique, l'analyse fonctionnelle de chaque composant, la modélisation 3D de toutes les pièces sur Siemens NX, et finalement, l'assemblage virtuel pour valider la conception."
+            },
+            heia_se34: {
+                title: "Projet HEIA SE3-4 : Robotique Eurobot",
+                description: "Développement d'un robot autonome en équipe pour participer à la compétition Eurobot. J'ai activement participé à la conception du robot principal et de ses différents actionneurs, un travail qui a nécessité une forte intégration entre la mécanique, l'électronique de commande et la programmation de la stratégie du robot."
+            },
+            lachat_metal: {
+                title: "Création du site web de Lachat Métal",
+                description: `J'ai conçu et développé le site web de Lachat Métal, une entreprise spécialisée dans la construction métallique et la maintenance industrielle. Ce projet comprenait le design du site web, le codage (HTML et CSS) ainsi que l'hébergement. Vous pouvez visiter le site ici : <a href="https://www.xn--lachat-mtal-ibb.ch/" target="_blank" class="text-blue-600 hover:underline">Lachat Métal →</a>.`
+            }
+        };
+
+        // ----------------------------------------------------------------
+        // MODAL
+        // ----------------------------------------------------------------
+        const modal               = document.getElementById('projectModal');
+        const modalTitle          = document.getElementById('modalTitle');
+        const modalDescription    = document.getElementById('modalDescription');
+        const modalMediaContainer = document.getElementById('modalMediaContainer');
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+            modalTitle.textContent     = data.title;
+            modalDescription.innerHTML = data.description;
+            modalMediaContainer.innerHTML = '';
+            if (data.media && data.media.length > 0) {
+                data.media.forEach(item => {
+                    if (item.type === 'image') {
+                        const img = document.createElement('img');
+                        img.src = item.src;
+                        img.alt = 'Image du projet ' + data.title;
+                        img.className = 'w-full rounded-lg shadow-md object-contain bg-white border border-gray-300';
+                        modalMediaContainer.appendChild(img);
+                    } else if (item.type === 'video') {
+                        const video = document.createElement('video');
+                        video.src = item.src; video.controls = true;
+                        video.className = 'w-full rounded-lg shadow-md';
+                        video.setAttribute('playsinline', '');
+                        modalMediaContainer.appendChild(video);
+                    }
+                });
+            }
+            modal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.modal-container').classList.remove('scale-95');
+            });
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modal.querySelector('.modal-container').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.querySelectorAll('video').forEach(v => v.pause());
+            }, 300);
+        }
+
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        });
+        // ----------------------------------------------------------------
+        // SCROLL FADE-IN
+        // ----------------------------------------------------------------
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+        // ----------------------------------------------------------------
+        // ANIMATED COUNTERS
+        // ----------------------------------------------------------------
+        function animateCounter(el, target, duration = 1300) {
+            let v = 0;
+            const step = Math.max(1, Math.ceil(target / (duration / 16)));
+            const timer = setInterval(() => {
+                v += step;
+                if (v >= target) {
+                    el.textContent = target + (target > 3 ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    el.textContent = v;
+                }
+            }, 16);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target, parseInt(entry.target.dataset.target));
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+        // ----------------------------------------------------------------
+        // HERO TYPEWRITER
+        // ----------------------------------------------------------------
+        (function () {
+            const textEl = document.getElementById('tagline-text');
+            if (!textEl) return;
+            const phrases = [
+                'Ingénieur mécanique · Officier · Maker',
+                'Passionné de précision et d\'innovation',
+                'Toujours prêt pour le prochain défi'
+            ];
+            let pi = 0, ci = 0, deleting = false, paused = false;
+
+            function type() {
+                const cur = phrases[pi];
+                if (!deleting) {
+                    textEl.textContent = cur.substring(0, ci + 1);
+                    ci++;
+                    if (ci === cur.length) {
+                        paused = true;
+                        setTimeout(() => { paused = false; deleting = true; tick(); }, 2500);
+                        return;
+                    }
+                } else {
+                    textEl.textContent = cur.substring(0, ci - 1);
+                    ci--;
+                    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+                }
+   
+                setTimeout(tick, deleting ? 32 : 52);
+            }
+            function tick() { if (!paused) type(); }
+            setTimeout(tick, 700);
+        })();
+    </script>
+</body>
+</html>

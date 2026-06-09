@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>Projets CFC — Clarence Borne</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563eb'/><text x='16' y='22' font-family='Inter,sans-serif' font-size='14' font-weight='800' fill='white' text-anchor='middle'>CB</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .hero-project {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f0f9ff 100%);
+        }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+        img { max-width: 100%; height: auto; }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 8px 16px;
+            border: 1.5px solid #bfdbfe;
+            border-radius: 99px;
+            background: white;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .back-btn:hover { background: #eff6ff; border-color: #93c5fd; }
+        .skill-chip {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-900 bg-gray-50">
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg fixed w-full z-20 top-0">
+        <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+            <h1 class="text-xl sm:text-2xl font-bold">
+                <a href="index.html" class="hover:opacity-80 transition-opacity">Clarence Borne</a>
+            </h1>
+            <a href="index.html#parcours" class="back-btn" style="background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.4); color:white;">
+                ← Retour au parcours
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16 pb-16">
+
+        <!-- HERO DE LA PAGE -->
+        <section class="hero-project rounded-2xl sm:rounded-3xl mt-4 px-6 sm:px-10 py-10 sm:py-14 fade-in">
+            <div class="max-w-3xl">
+                <span class="skill-chip tag-blue mb-4 inline-block">2017 – 2021</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-3 leading-tight">
+                    CFC &amp; Maturité Professionnelle
+                </h2>
+                <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                    Quatre années d'apprentissage en tant que <strong>dessinateur en construction microtechnique</strong>
+                    chez Simon &amp; Membrez SA (Blancpain), combinées à l'obtention de la maturité professionnelle technique.
+                    Une période fondatrice où la précision est devenue une seconde nature.
+                </p>
+            </div>
+        </section>
+
+        <!-- PROJET PRINCIPAL -->
+        <section class="mt-10">
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6 fade-in">Réalisations de cette période</h3>
+
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden fade-in delay-1 max-w-4xl">
+                <img src="Projet/montreblancpain.jpg"
+                     alt="Composants horlogers Blancpain"
+                     class="w-full h-64 sm:h-80 object-cover">
+                <div class="p-6 sm:p-8">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-chip tag-blue">CAO</span>
+                        <span class="skill-chip" style="background:#fef3c7;color:#92400e;">CATIA V5</span>
+                        <span class="skill-chip" style="background:#f0fdf4;color:#166534;">Horlogerie</span>
+                        <span class="skill-chip" style="background:#faf5ff;color:#6b21a8;">Dessin Technique</span>
+                    </div>
+                    <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Conception de Composants Horlogers</h4>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Durant mon apprentissage chez Simon &amp; Membrez SA, j'ai été chargé de la conception de divers
+                        composants pour des boîtiers de montre. Ce travail demandait une précision extrême et une parfaite
+                        maîtrise des logiciels de CAO.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Mes missions comprenaient la <strong>modélisation 3D</strong> à l'aide de CATIA V5, la création de
+                        <strong>plans techniques détaillés en 2D</strong> pour la fabrication, et la vérification de la conformité
+                        des pièces avec les exigences horlogères. Chaque composant devait respecter des tolérances de l'ordre
+                        du centième de millimètre.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        En parallèle, j'ai obtenu les certifications <strong>CATIA V5 Basic &amp; Surface Watch</strong>, reconnaissant
+                        mon expertise dans la modélisation surfacique orientée horlogerie — une formation spécialisée
+                        que peu d'apprentis ont la chance de suivre.
+                    </p>
+
+                    <!-- Compétences acquises -->
+                    <div class="border-t border-gray-100 pt-6">
+                        <h5 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Compétences acquises</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="flex items-start gap-3">
+                                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-800">Modélisation 3D avancée</p>
+                                    <p class="text-xs text-gray-500">CATIA V5 — pièces et assemblages complexes</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-800">Plans techniques 2D</p>
+                                    <p class="text-xs text-gray-500">Cotation, tolérances, normes horlogères</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-800">Précision microtechnique</p>
+                                    <p class="text-xs text-gray-500">Tolérances au centième de mm</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-gray-800">Certifications CATIA V5</p>
+                                    <p class="text-xs text-gray-500">Basic &amp; Surface Watch / Habillage</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOUTON RETOUR BAS -->
+        <div class="mt-10 fade-in delay-2">
+            <a href="index.html#parcours" class="back-btn">
+                ← Retour au parcours
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-white px-6 py-8 mt-8">
+        <div class="container mx-auto text-center">
+            <p class="text-base font-semibold mb-1">Clarence Borne</p>
+            <p class="text-gray-400 text-sm">Ingénieur mécanique en formation · Fribourg, Suisse</p>
+        </div>
+    </footer>
+
+    <script>
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matériaux Composites — Portfolio Clarence Borne</title>
+  <style>
+    :root {
+      --blue:   #1a3a5c;
+      --accent: #2e7dd1;
+      --light:  #f4f7fb;
+      --border: #d0dce8;
+      --text:   #222;
+      --muted:  #556;
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--text); background: #fff; line-height: 1.7; }
+
+    .section { max-width: 960px; margin: 0 auto; padding: 60px 24px 80px; }
+
+    /* Header */
+    .header { text-align: center; margin-bottom: 60px; }
+    .tag {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .header h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); color: var(--blue); font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+    .header .lead { font-size: 1.05rem; color: var(--muted); max-width: 680px; margin: 0 auto 20px; }
+    .header .context { font-size: .82rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 14px; }
+
+    /* Skill blocks */
+    .skill-block { margin-bottom: 60px; }
+    .skill-title {
+      font-size: 1.3rem; font-weight: 700; color: var(--blue);
+      border-left: 4px solid var(--accent); padding-left: 14px; margin-bottom: 8px;
+    }
+    .skill-lead { font-size: .97rem; color: var(--muted); margin-bottom: 24px; max-width: 820px; }
+
+    /* Cards */
+    .cards { display: grid; gap: 18px; margin-bottom: 24px; }
+    .cards.c2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .cards.c3 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .card {
+      background: var(--light); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px 20px;
+    }
+    .card.hl { border-color: var(--accent); border-left-width: 4px; background: #edf4fd; }
+    .card h3 { font-size: .95rem; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+    .card p, .card li { font-size: .9rem; color: var(--muted); }
+    .card ul { padding-left: 16px; }
+    .card ul li { margin-bottom: 4px; }
+
+    /* Insight quote */
+    .insight {
+      background: var(--blue); color: #c8ddf5; border-radius: var(--radius);
+      padding: 24px 28px; margin-bottom: 24px; font-style: italic; font-size: .97rem;
+    }
+    .insight strong { color: #fff; font-style: normal; }
+
+    /* Divider */
+    hr { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+
+    /* Competency badges */
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .badge {
+      background: #e3eef9; color: var(--blue);
+      font-size: .78rem; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+
+    /* Can-do list */
+    .cando { list-style: none; padding: 0; }
+    .cando li {
+      padding: 10px 0 10px 28px; border-bottom: 1px solid var(--border);
+      font-size: .92rem; color: var(--muted); position: relative;
+    }
+    .cando li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--accent); font-weight: 700;
+    }
+    .cando li:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+<div class="section">
+
+  <!-- Header -->
+  <div class="header">
+    <span class="tag">Compétence technique</span>
+    <h1>Structures en matériaux composites</h1>
+    <p class="lead">
+      Deux semestres de conception de structures légères m'ont permis de développer
+      une maîtrise complète du cycle composite — du choix des matériaux jusqu'à la
+      vérification structurale et aux règles de fabrication.
+    </p>
+    <p class="context">HEIA-FR · Génie Mécanique · Conception de Structures Légères 1 &amp; 2</p>
+  </div>
+
+
+  <!-- 1. Choisir les matériaux -->
+  <div class="skill-block">
+    <h2 class="skill-title">Sélectionner et justifier les matériaux</h2>
+    <p class="skill-lead">
+      Je suis capable de choisir la combinaison fibre–matrice–architecture adaptée à un cahier
+      des charges, en argumentant sur les performances, le coût et le procédé envisagé.
+    </p>
+
+    <div class="insight">
+      La vraie force des composites n'est pas d'être "légers" — c'est d'être
+      <strong>directionnellement programmables</strong>. Je peux orienter les fibres là où les
+      contraintes existent et rien ailleurs. C'est cette logique qui me guide dans tout choix de matériau.
+    </div>
+
+    <div class="cards c3">
+      <div class="card">
+        <h3>Fibres de verre (GFRP)</h3>
+        <p>Je sais positionner la verre E comme choix standard (rapport performance/coût),
+          la verre S pour les applications structurales exigeantes. Je comprends l'impact
+          de l'ensimage sur la qualité de l'interface fibre–matrice.</p>
+      </div>
+      <div class="card">
+        <h3>Fibres de carbone (CFRP)</h3>
+        <p>Je distingue HR (haute résistance, sport et aéro civil) et HM (haut module, spatial,
+          optique de précision). Je connais l'origine des propriétés via le procédé PAN et
+          sais anticiper la fragilité en compression et le risque de corrosion galvanique.</p>
+      </div>
+      <div class="card">
+        <h3>Fibres aramide (Kevlar)</h3>
+        <p>Je sais identifier les cas où l'aramide s'impose : résistance à l'impact,
+          balistique, absorbeurs d'énergie. Et ses limites : mauvaise compression,
+          sensibilité à l'humidité, difficulté d'usinage.</p>
+      </div>
+      <div class="card">
+        <h3>Matrice époxy vs thermoplastique</h3>
+        <p>Je sais choisir entre thermodurcissable (époxy, performance maximale, non recyclable)
+          et thermoplastique (PEEK, PPS, PA — recyclables, soudables, grande cadence en estampage)
+          selon les contraintes du projet.</p>
+      </div>
+      <div class="card">
+        <h3>Architecture du renfort</h3>
+        <p>Je choisis entre UD, toile, sergé et satin selon la géométrie de la pièce :
+          le sergé 2/2 pour les formes gauches, le satin pour les doubles courbures,
+          le tressage pour les profils tubulaires (cadres vélo, mâts).</p>
+      </div>
+      <div class="card hl">
+        <h3>Raisonnement de sélection</h3>
+        <p>Ma logique : identifier les chargements dominants → choisir la fibre qui y répond →
+          sélectionner la matrice selon le procédé et l'environnement → valider l'architecture
+          selon la géométrie et la drapabilité nécessaire.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+
+  <!-- 2. Procédés -->
+  <div class="skill-block">
+    <h2 class="skill-title">Choisir et comprendre les procédés de fabrication</h2>
+    <p class="skill-lead">
+      Je maîtrise les principaux procédés de mise en œuvre des composites et sais
+      identifier lequel est adapté selon les contraintes de série, qualité, géométrie et budget.
+    </p>
+
+    <div class="cards c2">
+      <div class="card">
+        <h3>Ce que je suis capable de faire</h3>
+        <ul class="cando">
+          <li>Choisir entre infusion, RTM, autoclave ou estampage selon la cadence et la qualité requise</li>
+          <li>Expliquer pourquoi les préimprégnés + autoclave restent la référence aérospatiale (V_f contrôlé, reproductibilité)</li>
+          <li>Justifier l'enroulement filamentaire pour les réservoirs et tubes (V_f = 60–85 %, automatisé)</li>
+          <li>Identifier les limites de chaque procédé : nombre de faces lisses, taille maximale, coût outillage</li>
+          <li>Comprendre les contraintes de stockage des préimprégnés (−18 °C, &lt;70 % HR, 6 mois max)</li>
+        </ul>
+      </div>
+      <div class="card hl">
+        <h3>Raisonnement clé</h3>
+        <p>
+          La fraction volumique de fibres V_f est le premier indicateur de qualité d'un composite.
+          En contact manuel : ~30 %. Sous vide : 50–60 %. En autoclave : 55–65 %.
+          Je sais qu'augmenter V_f améliore E_l et R_m — mais que sans maîtrise du procédé,
+          on crée des vides qui dégradent le cisaillement interlaminaire.
+        </p>
+        <div class="badges">
+          <span class="badge">Infusion</span>
+          <span class="badge">RTM / VARTM</span>
+          <span class="badge">Autoclave</span>
+          <span class="badge">Estampage TP</span>
+          <span class="badge">Enroulement</span>
+          <span class="badge">SMC / BMC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+
+  <!-- 3. Micromécanique -->
+  <div class="skill-block">
+    <h2 class="skill-title">Prédire les propriétés mécaniques d'un pli</h2>
+    <p class="skill-lead">
+      Je sais calculer les propriétés élastiques et de résistance d'un pli unidirectionnel
+      à partir des seules données fibres et matrice — sans essais expérimentaux.
+      C'est la base de toute conception analytique composite.
+    </p>
+
+    <div class="insight">
+      L'idée centrale que j'ai retenue : le module longitudinal E_l est
+      <strong>dominé par les fibres</strong> (modèle parallèle, très prédictif),
+      tandis que E_t et G_lt sont <strong>dominés par la matrice</strong> (modèle série).
+      Cette asymétrie explique tout le comportement anisotrope du composite.
+    </div>
+
+    <div class="cards c2">
+      <div class="card">
+        <h3>Ce que je sais calculer</h3>
+        <ul class="cando">
+          <li>E_l (règle des mélanges) et E_t (modèle série) à partir de V_f, E_f, E_m</li>
+          <li>G_lt ≈ G_m/(1−V_f) et ν_lt par règle des mélanges ; ν_tl par réciprocité de Maxwell</li>
+          <li>Résistance ultime longitudinale R_m et limite élastique R_el</li>
+          <li>Épaisseur du pli depuis le grammage fibre (FAW) et V_f</li>
+          <li>Densité du stratifié à partir des fractions volumiques</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Ce que j'en déduis en conception</h3>
+        <ul class="cando">
+          <li>Un pli carbone IM à V_f=60 % donne E_l ≈ 170 GPa, soit ~7× l'acier pour une densité de 1,6 g/cm³</li>
+          <li>La direction transversale (E_t ≈ 9 GPa) est proche du module de la matrice seule — à ne jamais négliger en conception</li>
+          <li>Le comportement en cisaillement G_lt est entièrement à la charge de la matrice : le choix de matrice est critique en torsion</li>
+          <li>Je peux homogénéiser un pli hétérogène en matériau équivalent pour l'introduire dans un modèle FEM</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+
+  <!-- 4. Stratifiés -->
+  <div class="skill-block">
+    <h2 class="skill-title">Concevoir un empilement de plis (stratifié)</h2>
+    <p class="skill-lead">
+      Je comprends comment un empilement de plis à orientations différentes crée un comportement
+      global couplé — et comment le maîtriser pour obtenir exactement le comportement voulu.
+    </p>
+
+    <div class="cards c3">
+      <div class="card">
+        <h3>Théorie CLT &amp; matrice ABD</h3>
+        <p>Je sais construire la matrice ABD qui relie efforts membranaires (N) et moments (M)
+          aux déformations (ε°) et courbures (κ). Je distingue A (rigidité membranaire),
+          B (couplage flexion-extension) et D (rigidité en flexion).</p>
+      </div>
+      <div class="card">
+        <h3>Stratifié symétrique</h3>
+        <p>Je sais pourquoi la symétrie est la règle de base : B = 0 élimine le couplage
+          flexion-extension. Une pièce non symétrique se cambrera au démoulage et sous charge thermique — erreur de débutant que j'évite.</p>
+      </div>
+      <div class="card">
+        <h3>Orientation et équilibre</h3>
+        <p>Je maîtrise la règle du +θ/−θ (équilibre → A₁₆ = A₂₆ = 0), le quasi-isotrope
+          [0/±45/90]s pour les chargements multidirectionnels, et je sais quand un UD pur
+          0° serait une erreur structurale.</p>
+      </div>
+    </div>
+
+    <div class="card hl" style="margin-top:4px;">
+      <h3>Ce que j'applique en pratique</h3>
+      <p>
+        Avant de définir un empilement, je liste les chargements principaux de la pièce.
+        Je cible les orientations qui y répondent, je vérifie la symétrie, l'équilibre,
+        je m'assure qu'aucune direction structurale n'est à 0 % de plis — puis je valide
+        avec les critères de rupture pli par pli.
+      </p>
+    </div>
+  </div>
+
+  <hr />
+
+
+  <!-- 5. Rupture -->
+  <div class="skill-block">
+    <h2 class="skill-title">Vérifier la résistance — critères de rupture</h2>
+    <p class="skill-lead">
+      Je sais appliquer les critères de rupture adaptés aux composites orthotropes,
+      comprendre leurs hypothèses et leurs limites, et interpréter le résultat
+      pour décider d'une marge de sécurité.
+    </p>
+
+    <div class="cards c2">
+      <div class="card">
+        <h3>Ce que je sais faire</h3>
+        <ul class="cando">
+          <li>Distinguer les critères non-interactifs (contraintes max, déformations max) des critères interactifs — et savoir pourquoi ces derniers sont plus réalistes</li>
+          <li>Appliquer Tsai-Hill pour un pli UD en contraintes planes</li>
+          <li>Utiliser Hoffmann quand la pièce est sollicitée aussi bien en traction qu'en compression (X_t ≠ X_c)</li>
+          <li>Comprendre Tsai-Wu comme le critère le plus général, implémenté dans les codes FEM</li>
+          <li>Calculer la résistance d'un pli hors-axe à un angle θ et tracer la courbe polaire de résistance</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Ce que j'ai compris en profondeur</h3>
+        <ul class="cando">
+          <li>La rupture dans un composite est progressive : matrice d'abord, puis interface, puis fibres — la rigidité se dégrade avant la rupture finale</li>
+          <li>Tsai-Hill ne distingue pas traction et compression : dangereux si la pièce travaille en flexion</li>
+          <li>Les microfissures dans la matrice ne signifient pas rupture de la pièce — mais elles ouvrent la voie à l'humidité et au délaminage</li>
+          <li>Le delaminage est le mode de rupture le plus critique en flexion : il se produit entre plis, sans signal visible en surface</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+
+  <!-- 6. Règles de conception -->
+  <div class="skill-block">
+    <h2 class="skill-title">Concevoir pour la fabrication — règles pratiques</h2>
+    <p class="skill-lead">
+      La théorie ne suffit pas : une pièce composite bien calculée peut être mauvaise si
+      elle est inconstructible. J'ai intégré les contraintes de fabrication dès la phase de conception.
+    </p>
+
+    <div class="cards c2" style="margin-bottom:20px;">
+      <div class="card">
+        <h3>Ce que j'anticipe au stade conception</h3>
+        <ul class="cando">
+          <li>Éviter les angles vifs : un coin intérieur sans rayon suffisant génère des vides par "bridging" du tissu</li>
+          <li>Prévoir des découpes dans le tissu pour draper les formes à double courbure sans plis (wrinkles)</li>
+          <li>Ne pas dépasser 4 plis consécutifs de même orientation pour éviter les concentrations inter-laminaires</li>
+          <li>Assurer ≥10 % de plis dans chaque direction principale, même si une direction domine</li>
+          <li>Toujours terminer un empilement par un pli ±45° en surface (résistance à l'impact et à l'abrasion)</li>
+          <li>Documenter l'empilement complet dans un <em>ply book</em> pour la traçabilité</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Ce que je sais sur l'assemblage</h3>
+        <ul class="cando">
+          <li>Je sais choisir entre collage et rivetage : le collage distribue les contraintes uniformément, mais n'admet pas de péeling (pelage)</li>
+          <li>Je connais les trois modes de co-assemblage : co-curing, co-bonding, et collage secondaire — et leurs conditions d'emploi</li>
+          <li>Je sais que le carbone est galvanique avec les métaux ferreux : l'interface métal–composite doit être isolée</li>
+          <li>Je sais que la température de cuisson de la colle doit rester inférieure à la Tg du composite déjà polymérisé</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight">
+      Ce que j'ai vraiment appris : <strong>un bon composite se conçoit de l'intérieur vers l'extérieur</strong>.
+      Le choix de l'empilement dépend du procédé, qui dépend de la géométrie, qui dépend du chargement.
+      Ces paramètres ne peuvent pas être optimisés séparément — c'est un système.
+    </div>
+
+    <div class="cards c3">
+      <div class="card">
+        <h3>Détection des défauts</h3>
+        <p>Je sais décrire et interpréter les résultats des CND composites : thermographie
+          infrarouge pour le délaminage, ultrasons (C-scan) pour les vides, radiographie X
+          pour les fibres brisées ou corps étrangers.</p>
+      </div>
+      <div class="card">
+        <h3>Compromis conception–fabrication</h3>
+        <p>Je sais qu'augmenter le rayon d'un coin intérieur améliore la qualité de drapage,
+          que les découpes dans les préformes réduisent les plis — mais que chaque découpe
+          interrompt des fibres et réduit localement la résistance.</p>
+      </div>
+      <div class="card hl">
+        <h3>Vision systémique</h3>
+        <p>Au-delà des formules, j'ai développé une lecture globale : chaque choix
+          de matériau, de procédé et de géométrie a des conséquences sur les autres.
+          C'est ce regard d'ensemble que je mobilise en projet.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
